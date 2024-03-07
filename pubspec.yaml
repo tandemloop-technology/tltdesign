@@ -1,0 +1,25 @@
+name: tlt_design
+description: "A Flutter package for Tandemloop Design System, providing a collection of open-source UI components."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=3.2.0 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  # fonts:
+  #   - family: tandemloop_icons
+  #     fonts:
+  #       - asset: fonts/tandemloop_icons.ttf
