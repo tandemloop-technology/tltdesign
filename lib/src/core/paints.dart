@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tlt_design/src/foundations/colors.dart';
 import 'dart:math' as math;
 
-import 'package:tlt_design/src/foundations/properties.dart';
+import 'package:tlt_design/src/utils/properties.dart';
 
 class TltSliderValueIndicatorShape extends SliderComponentShape {
   final TltSliderIndicatorMode mode;

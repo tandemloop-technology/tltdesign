@@ -19,7 +19,10 @@ dev_dependencies:
 flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
-  # fonts:
-  #   - family: tandemloop_icons
-  #     fonts:
-  #       - asset: fonts/tandemloop_icons.ttf
+  fonts:
+    - family: tandemloop_icons
+      fonts:
+        - asset: fonts/tandemloop_icons.ttf
+    - family: iconsax
+      fonts:
+        - asset: fonts/tandemloop_icons_new.ttf

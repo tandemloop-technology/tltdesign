@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tlt_design/src/foundations/colors.dart';
-import 'package:tlt_design/src/foundations/properties.dart';
+import 'package:tlt_design/src/utils/properties.dart';
 import 'package:tlt_design/src/foundations/text_styles.dart';
 
 class TltTheme {

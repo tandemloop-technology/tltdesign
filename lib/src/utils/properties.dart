@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tlt_design/src/foundations/colors.dart';
 
-import 'theme.dart';
+import '../foundations/theme.dart';
 
 enum TltButtonType { primary, secondary, outline, link }
 
