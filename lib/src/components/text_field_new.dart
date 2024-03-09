@@ -120,7 +120,7 @@ class _TltNewTextFieldSelectionGestureDetectorBuilder
 /// To integrate the [TltNewTextField] into a [Form] with other [FormField] widgets,
 /// consider using [TextFormField].
 ///
-/// {@template flutter.material.TltNewtextfield.wantKeepAlive}
+/// {@template flutter.material.TltNewTextfield.wantKeepAlive}
 /// When the widget has focus, it will prevent itself from disposing via its
 /// underlying [EditableText]'s [AutomaticKeepAliveClientMixin.wantKeepAlive] in
 /// order to avoid losing the selection. Removing the focus will allow it to be
@@ -270,7 +270,7 @@ class TltNewTextField extends StatefulWidget {
     this.autofocus = false,
     this.obscuringCharacter = '•',
     this.obscureText = false,
-    this.autocorrect = true,
+    this.autoCorrect = true,
     SmartDashesType? smartDashesType,
     SmartQuotesType? smartQuotesType,
     this.enableSuggestions = true,
@@ -463,7 +463,7 @@ class TltNewTextField extends StatefulWidget {
   final bool obscureText;
 
   /// {@macro flutter.widgets.editableText.autocorrect}
-  final bool autocorrect;
+  final bool autoCorrect;
 
   /// {@macro flutter.services.TextInputConfiguration.smartDashesType}
   final SmartDashesType smartDashesType;
@@ -637,7 +637,7 @@ class TltNewTextField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.selectionEnabled}
   bool get selectionEnabled => enableInteractiveSelection;
 
-  /// {@template flutter.material.TltNewtextfield.onTap}
+  /// {@template flutter.material.TltNewTextfield.onTap}
   /// Called for each distinct tap except for every second tap of a double tap.
   ///
   /// The text field builds a [GestureDetector] to handle input events like tap,
@@ -743,7 +743,7 @@ class TltNewTextField extends StatefulWidget {
   /// Defaults to [Clip.hardEdge].
   final Clip clipBehavior;
 
-  /// {@template flutter.material.TltNewtextfield.restorationId}
+  /// {@template flutter.material.TltNewTextfield.restorationId}
   /// Restoration ID to save and restore the state of the text field.
   ///
   /// If non-null, the text field will persist and restore its current scroll
@@ -899,7 +899,7 @@ class TltNewTextField extends StatefulWidget {
         defaultValue: '•'));
     properties.add(DiagnosticsProperty<bool>('obscureText', obscureText,
         defaultValue: false));
-    properties.add(DiagnosticsProperty<bool>('autocorrect', autocorrect,
+    properties.add(DiagnosticsProperty<bool>('autoCorrect', autoCorrect,
         defaultValue: true));
     properties.add(EnumProperty<SmartDashesType>(
         'smartDashesType', smartDashesType,
@@ -1411,7 +1411,7 @@ class _TltNewTextFieldState extends State<TltNewTextField>
     Offset? cursorOffset;
     final Color cursorColor;
     final Color selectionColor;
-    Color? autocorrectionTextRectColor;
+    Color? autoCorrectionTextRectColor;
     Radius? cursorRadius = widget.cursorRadius;
     VoidCallback? handleDidGainAccessibilityFocus;
     VoidCallback? handleDidLoseAccessibilityFocus;
@@ -1433,7 +1433,7 @@ class _TltNewTextFieldState extends State<TltNewTextField>
         cursorRadius ??= const Radius.circular(2.0);
         cursorOffset = Offset(
             iOSHorizontalOffset / MediaQuery.devicePixelRatioOf(context), 0);
-        autocorrectionTextRectColor = selectionColor;
+        autoCorrectionTextRectColor = selectionColor;
 
       case TargetPlatform.macOS:
         final CupertinoThemeData cupertinoTheme = CupertinoTheme.of(context);
@@ -1545,7 +1545,7 @@ class _TltNewTextFieldState extends State<TltNewTextField>
           autofocus: widget.autofocus,
           obscuringCharacter: widget.obscuringCharacter,
           obscureText: widget.obscureText,
-          autocorrect: widget.autocorrect,
+          autocorrect: widget.autoCorrect,
           smartDashesType: widget.smartDashesType,
           smartQuotesType: widget.smartQuotesType,
           enableSuggestions: widget.enableSuggestions,
@@ -1584,7 +1584,7 @@ class _TltNewTextFieldState extends State<TltNewTextField>
           scrollController: widget.scrollController,
           scrollPhysics: widget.scrollPhysics,
           autofillClient: this,
-          autocorrectionTextRectColor: autocorrectionTextRectColor,
+          autocorrectionTextRectColor: autoCorrectionTextRectColor,
           clipBehavior: widget.clipBehavior,
           restorationId: 'editable',
           scribbleEnabled: widget.scribbleEnabled,

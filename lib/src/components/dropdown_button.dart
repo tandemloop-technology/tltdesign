@@ -1,5 +1,5 @@
 import 'dart:math' as math;
-import 'dart:ui' as ui show window;
+import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,14 +7,13 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart'
     show Brightness, LogicalKeyboardKey, MouseCursor;
 import 'package:tlt_design/src/foundations/colors.dart';
-import 'package:tlt_design/src/foundations/text_styles.dart';
 import 'package:tlt_design/src/foundations/theme.dart';
 import 'package:tlt_design/src/utils/icons.dart';
 import 'package:tlt_design/src/utils/properties.dart';
 
 final TltTheme _theme = TltTheme.instance;
 
-const double _defaultDenseButtonHeight = 24.0;
+// const double _defaultDenseButtonHeight = 24.0;
 const EdgeInsetsGeometry _defaultAlignedButtonPadding =
     EdgeInsetsDirectional.only(start: 16.0, end: 4.0);
 const EdgeInsets _defaultUnalignedButtonPadding = EdgeInsets.zero;
@@ -1141,11 +1140,11 @@ class _TltDropdownButtonState<T> extends State<TltDropdownButton<T>>
     widget.onTap?.call();
   }
 
-  double get _denseButtonHeight {
-    final double fontSize = _textStyle.fontSize ?? TltStyles.body1.fontSize!;
-    return math.max(
-        fontSize, math.max(widget.iconSize, _defaultDenseButtonHeight));
-  }
+  // double get _denseButtonHeight {
+  //   final double fontSize = _textStyle.fontSize ?? TltStyles.body1.fontSize!;
+  //   return math.max(
+  //       fontSize, math.max(widget.iconSize, _defaultDenseButtonHeight));
+  // }
 
   Color get _iconColor {
     if (_enabled) {

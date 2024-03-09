@@ -266,11 +266,12 @@ class _RadioPainter extends ToggleablePainter {
   bool selected;
   final double outerRadius;
   final double innerRadius;
-  _RadioPainter(
-      {required this.outerRadius,
-      required this.innerRadius,
-      this.isRadioButtonDisabled = false,
-      this.selected = false});
+  _RadioPainter({
+    required this.outerRadius,
+    required this.innerRadius,
+    this.isRadioButtonDisabled = false,
+    this.selected = false,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {

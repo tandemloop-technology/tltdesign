@@ -46,10 +46,10 @@ class SimpleGestureDetector extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SimpleGestureDetectorState createState() => _SimpleGestureDetectorState();
+  SimpleGestureDetectorState createState() => SimpleGestureDetectorState();
 }
 
-class _SimpleGestureDetectorState extends State<SimpleGestureDetector> {
+class SimpleGestureDetectorState extends State<SimpleGestureDetector> {
   Offset? _initialSwipeOffset;
   Offset? _finalSwipeOffset;
   SwipeDirection? _previousDirection;

@@ -98,11 +98,11 @@ class TltHeaderStyle {
     this.rightChevronMargin = const EdgeInsets.symmetric(horizontal: 8.0),
     this.leftChevronIcon = const Icon(
       Icons.chevron_left,
-      color: Color.fromARGB(255, 212, 212, 212),
+      color: Color(0xFFD4D4D4),
     ),
     this.rightChevronIcon = const Icon(
       Icons.chevron_right,
-      color: Color.fromARGB(255, 212, 212, 212),
+      color: Color(0xFFD4D4D4),
     ),
     this.leftChevronVisible = true,
     this.rightChevronVisible = true,

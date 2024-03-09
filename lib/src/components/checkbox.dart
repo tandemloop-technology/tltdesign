@@ -136,7 +136,7 @@ class TltCheckbox extends StatefulWidget {
   /// Defines how compact the checkbox's layout will be.
   /// {@endtemplate}
   ///
-  /// {@macro flutter.material.themedata.visualDensity}
+  /// {@macro flutter.material.themeData.visualDensity}
   ///
   /// If null, then the value of [CheckboxThemeData.visualDensity] is used. If
   /// that is also null, then the value of [ThemeData.visualDensity] is used.

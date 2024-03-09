@@ -172,42 +172,42 @@ class TltCalendarStyle {
     ),
     this.todayTextStyle = const TextStyle(
       fontWeight: FontWeight.w500,
-      color: Color.fromRGBO(7, 51, 40, 1),
+      color: Color(0xFF073328),
       fontSize: 14,
     ), //
     this.todayDecoration = const BoxDecoration(
-      color: Color.fromRGBO(242, 244, 247, 1),
+      color: Color(0xFFF2F4F7),
       shape: BoxShape.circle,
     ),
     this.selectedTextStyle = const TextStyle(
       fontWeight: FontWeight.w500,
-      color: Color.fromRGBO(7, 51, 40, 1),
+      color: Color(0xFF073328),
       fontSize: 14,
     ),
     this.selectedDecoration = const BoxDecoration(
-      color: Color.fromRGBO(27, 209, 165, 1),
+      color: Color(0xFF1BD1A5),
       shape: BoxShape.circle,
     ),
     this.rangeStartTextStyle = const TextStyle(
-      color: Color.fromRGBO(7, 51, 40, 1),
+      color: Color(0xFF073328),
       fontSize: 14,
       fontWeight: FontWeight.w500,
     ),
     this.rangeStartDecoration = const BoxDecoration(
-      color: Color.fromRGBO(27, 209, 165, 1),
+      color: Color(0xFF1BD1A5),
       shape: BoxShape.circle,
     ),
     this.rangeEndTextStyle = const TextStyle(
-      color: Color.fromRGBO(7, 51, 40, 1),
+      color: Color(0xFF073328),
       fontSize: 14,
       fontWeight: FontWeight.w500,
     ),
     this.rangeEndDecoration = const BoxDecoration(
-      color: Color.fromRGBO(27, 209, 165, 1),
+      color: Color(0xFF1BD1A5),
       shape: BoxShape.circle,
     ),
     this.withinRangeTextStyle = const TextStyle(
-      color: Color.fromRGBO(7, 51, 40, 1),
+      color: Color(0xFF073328),
       fontSize: 14,
       fontWeight: FontWeight.w500,
     ),
@@ -227,10 +227,10 @@ class TltCalendarStyle {
       ),
       shape: BoxShape.circle,
     ),
-    this.weekendTextStyle = const TextStyle(color: const Color(0xFF5A5A5A)),
+    this.weekendTextStyle = const TextStyle(color: Color(0xFF5A5A5A)),
     this.weekendDecoration = const BoxDecoration(shape: BoxShape.circle),
     this.weekNumberTextStyle =
-        const TextStyle(fontSize: 12, color: const Color(0xFFBFBFBF)),
+        const TextStyle(fontSize: 12, color: Color(0xFFBFBFBF)),
     this.defaultTextStyle = const TextStyle(),
     this.defaultDecoration = const BoxDecoration(shape: BoxShape.circle),
     this.rowDecoration = const BoxDecoration(),

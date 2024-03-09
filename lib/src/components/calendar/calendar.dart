@@ -10,7 +10,7 @@ import 'calendar_header_styles.dart';
 
 import 'calendar_simple_gesture_detector.dart';
 import 'calendar_utils.dart';
-import 'celandar_days_of_week_style.dart';
+import 'calendar_days_of_week_style.dart';
 import 'tlt_calendar_base.dart';
 import 'tlt_calendar_builder.dart';
 import 'tlt_calendar_cell_content.dart';
@@ -157,8 +157,8 @@ class TltTableCalendar<T> extends StatefulWidget {
   /// Current mode of range selection.
   ///
   /// * `RangeSelectionMode.disabled` - range selection is always off.
-  /// * `RangeSelectionMode.toggledOff` - range selection is currently off, can be toggled by longpressing a day cell.
-  /// * `RangeSelectionMode.toggledOn` - range selection is currently on, can be toggled by longpressing a day cell.
+  /// * `RangeSelectionMode.toggledOff` - range selection is currently off, can be toggled by long pressing a day cell.
+  /// * `RangeSelectionMode.toggledOn` - range selection is currently on, can be toggled by long pressing a day cell.
   /// * `RangeSelectionMode.enforced` - range selection is always on.
   final RangeSelectionMode rangeSelectionMode;
 
@@ -282,10 +282,10 @@ class TltTableCalendar<T> extends StatefulWidget {
         super(key: key);
 
   @override
-  _TltTableCalendarState<T> createState() => _TltTableCalendarState<T>();
+  TltTableCalendarState<T> createState() => TltTableCalendarState<T>();
 }
 
-class _TltTableCalendarState<T> extends State<TltTableCalendar<T>> {
+class TltTableCalendarState<T> extends State<TltTableCalendar<T>> {
   late final PageController _pageController;
   late final ValueNotifier<DateTime> _focusedDay;
   late RangeSelectionMode _rangeSelectionMode;
@@ -668,15 +668,16 @@ class _TltTableCalendarState<T> extends State<TltTableCalendar<T>> {
             height: 1,
             width: double.infinity,
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                Color.fromRGBO(242, 242, 242, 0),
-                Color.fromRGBO(242, 242, 242, 1),
-                Color.fromRGBO(242, 242, 242, 0),
-              ],
-            )),
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color(0x00F2F2F2),
+                  Color(0xFFF2F2F2),
+                  Color(0x00F2F2F2),
+                ],
+              ),
+            ),
           ),
           // Divider(
           //   height: 1,

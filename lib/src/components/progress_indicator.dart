@@ -156,10 +156,10 @@ class TltLinearProgressIndicator extends StatefulWidget {
   final bool showTooltipAbove;
 
   @override
-  _TltProgressIndicatorState createState() => _TltProgressIndicatorState();
+  TltProgressIndicatorState createState() => TltProgressIndicatorState();
 }
 
-class _TltProgressIndicatorState extends State<TltLinearProgressIndicator>
+class TltProgressIndicatorState extends State<TltLinearProgressIndicator>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AnimationController? _animationController;
   Animation? _animation;
@@ -428,15 +428,15 @@ class _LinearPainter extends CustomPainter {
   final bool clipLinearGradient;
 
   _LinearPainter({
+    this.linearGradient,
+    this.linearGradientBackgroundColor,
+    this.maskFilter,
     required this.progress,
     required this.isRTL,
     required this.activeColor,
     required this.inActiveColor,
     required this.barRadius,
-    this.linearGradient,
-    this.maskFilter,
     required this.clipLinearGradient,
-    this.linearGradientBackgroundColor,
   }) {
     _paintBackground.color = inActiveColor;
 
@@ -448,8 +448,12 @@ class _LinearPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Path backgroundPath = Path();
-    backgroundPath.addRRect(RRect.fromRectAndRadius(
-        Rect.fromLTWH(0, 0, size.width, size.height), barRadius));
+    backgroundPath.addRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(0, 0, size.width, size.height),
+        barRadius,
+      ),
+    );
     canvas.drawPath(backgroundPath, _paintBackground);
 
     if (maskFilter != null) {
@@ -729,11 +733,11 @@ class TltCircularProgressIndicator extends StatefulWidget {
   // bool isBusy = true;
 
   @override
-  _TltCircularProgressIndicatorState createState() =>
-      _TltCircularProgressIndicatorState();
+  TltCircularProgressIndicatorState createState() =>
+      TltCircularProgressIndicatorState();
 }
 
-class _TltCircularProgressIndicatorState
+class TltCircularProgressIndicatorState
     extends State<TltCircularProgressIndicator>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AnimationController? _animationController;
@@ -845,13 +849,13 @@ class _TltCircularProgressIndicatorState
                   valueColor: widget.activeColor,
                   backgroundColor: widget.inActiveColor,
                   // value: null,
-                  headValue: _TltCircularProgressIndicatorState._strokeHeadTween
+                  headValue: TltCircularProgressIndicatorState._strokeHeadTween
                       .evaluate(_animationController!),
-                  tailValue: _TltCircularProgressIndicatorState._strokeTailTween
+                  tailValue: TltCircularProgressIndicatorState._strokeTailTween
                       .evaluate(_animationController!),
-                  offsetValue: _TltCircularProgressIndicatorState._offsetTween
+                  offsetValue: TltCircularProgressIndicatorState._offsetTween
                       .evaluate(_animationController!),
-                  rotationValue: _TltCircularProgressIndicatorState
+                  rotationValue: TltCircularProgressIndicatorState
                       ._rotationTween
                       .evaluate(_animationController!),
                   strokeWidth: widget.width,

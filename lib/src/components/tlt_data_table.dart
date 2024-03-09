@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 bool dataTableShowLogs = true;
@@ -117,7 +116,7 @@ class TltDataTable extends DataTable {
     super.headingRowHeight,
     super.headingTextStyle,
     this.headingCheckboxTheme,
-    this.datarowCheckboxTheme,
+    this.dataRowCheckboxTheme,
     super.horizontalMargin,
     super.checkboxHorizontalMargin,
     this.checkboxAlignment = Alignment.center,
@@ -186,7 +185,7 @@ class TltDataTable extends DataTable {
 
   /// Icon to be displayed when sorting is applied to a column.
   /// If not set, the default icon is [Icons.arrow_upward].
-  /// When set always overrides/preceeds default arrow icons.
+  /// When set always overrides/precedes default arrow icons.
   final IconData sortArrowIcon;
 
   /// A builder for the sort arrow widget. Can be used in combination with [sortArrowAlwaysVisible] for a custom
@@ -208,19 +207,19 @@ class TltDataTable extends DataTable {
 
   /// Overrides theme of the checkbox that is displayed in the checkbox column
   /// in each data row (should checkboxes be enabled)
-  final CheckboxThemeData? datarowCheckboxTheme;
+  final CheckboxThemeData? dataRowCheckboxTheme;
 
   /// If set the table will have empty space added after the the last row and allow scroll the
   /// core of the table higher (e.g. if you would like to have iOS navigation UI at the bottom overlapping the table and
-  /// have the ability to slightly scroll up the bototm row to avoid the obstruction)
+  /// have the ability to slightly scroll up the bottom row to avoid the obstruction)
   final double? bottomMargin;
 
   /// Overrides default [BoxDecoration](bottom border) applied to heading row.
-  /// When both [headerRowColor] and this porperty are provided:
+  /// When both [headerRowColor] and this property are provided:
   /// - [headingRowDecoration] takes precedence if there're 0 or 1 fixed rows
-  /// - [headerRowColor] is applied to fixed top forws starting from the second
+  /// - [headerRowColor] is applied to fixed top rows starting from the second
   /// When there're both fixed top rows and fixed left columns with [fixedCornerColor] provided,
-  /// this decoration overrides top left cornner cell color.
+  /// this decoration overrides top left corner cell color.
   final BoxDecoration? headingRowDecoration;
 
   /// The height of each row (excluding the row that contains column headings).
@@ -230,7 +229,7 @@ class TltDataTable extends DataTable {
   /// specifications.
   ///
   /// Note that unlike stock [DataTable] from the SDK there's no capability to define min/max
-  /// height of a row, corresponding properties are ingored. This is an implementation tradeoff
+  /// height of a row, corresponding properties are ignored. This is an implementation tradeoff
   /// making it possible to have performant sticky columns.
   @override
   final double? dataRowHeight;
@@ -258,7 +257,7 @@ class TltDataTable extends DataTable {
   final TableBorder? border;
 
   /// Determines ratio of Small column's width to Medium column's width.
-  /// I.e. 0.5 means that Small column is twice narower than Medium column.
+  /// I.e. 0.5 means that Small column is twice narrower than Medium column.
   final double smRatio;
 
   /// Determines ratio of Large column's width to Medium column's width.
@@ -267,7 +266,7 @@ class TltDataTable extends DataTable {
 
   /// The number of sticky rows fixed at the top of the table.
   /// The heading row is counted/included.
-  /// By defult the value is 1 which means header row is fixed.
+  /// By default the value is 1 which means header row is fixed.
   /// Set to 0 in order to unstick the header,
   /// set to >1 in order to fix data rows
   /// (i.e. in order to fix both header and the first data row use value of 2)
@@ -277,16 +276,16 @@ class TltDataTable extends DataTable {
   /// Check box column (if enabled) is also counted
   final int fixedLeftColumns;
 
-  /// Backgound color of the sticky columns fixed via [fixedLeftColumns].
+  /// Background color of the sticky columns fixed via [fixedLeftColumns].
   /// Note: unlike data rows which can change their colors depending on material state (e.g. selected, hovered)
-  /// this color is static and doesn't repond to state change
+  /// this color is static and doesn't respond to state change
   /// Note: to change background color of fixed data rows use [TltDataTable.headingRowColor]
   final Color? fixedColumnsColor;
 
-  /// Backgound color of the top left corner which is fixed whenere both [fixedTopRows]
+  /// Background color of the top left corner which is fixed whenever both [fixedTopRows]
   /// and [fixedLeftColumns] are greater than 0
   /// Note: unlike data rows which can change their colors depending on material state (e.g. selected, hovered)
-  /// this color is static and doesn't repond to state change
+  /// this color is static and doesn't respond to state change
   /// Note: to change background color of fixed data rows use [TltDataTable.headingRowColor]
   final Color? fixedCornerColor;
 
@@ -294,7 +293,7 @@ class TltDataTable extends DataTable {
     final double effectiveDataRowMinHeight = dataRowHeight ??
         dataTableTheme.dataRowMinHeight ??
         kMinInteractiveDimension;
-    // Reverting min/max csupport to single row height value in order not to have troubles
+    // Reverting min/max support to single row height value in order not to have troubles
     // with sticky column cells
     // https://github.com/maxim-saplin/data_table_2/issues/191
     // final double effectiveDataRowMaxHeight = dataRowMaxHeight ??
@@ -721,22 +720,23 @@ class TltDataTable extends DataTable {
         actualFixedRows,
         effectiveDataRowColor);
 
-    var builder = LayoutBuilder(builder: (context, constraints) {
-      return SyncedScrollControllers(
+    var builder = LayoutBuilder(
+      builder: (context, constraints) {
+        return SyncedScrollControllers(
           scrollController: scrollController,
           sc12toSc11Position: true,
           horizontalScrollController: horizontalScrollController,
           sc22toSc21Position: true,
           builder: (context, sc11, sc12, sc21, sc22) {
             var coreVerticalController = sc11;
-            var leftColumnVerticalContoller = sc12;
+            var leftColumnVerticalController = sc12;
             var coreHorizontalController = sc21;
             var fixedRowsHorizontalController = sc22;
 
             var displayColumnIndex = 0;
 
             // size & build checkboxes in heading and leftmost column
-            // to be substracted from total width available to columns
+            // to be subtracted from total width available to columns
 
             if (checkBoxWidth > 0) displayColumnIndex += 1;
 
@@ -881,42 +881,46 @@ class TltDataTable extends DataTable {
             }
 
             var coreTable = Table(
-                columnWidths:
-                    actualFixedColumns > 0 ? rightWidthsAsMap : widthsAsMap,
-                children: coreRows ?? [],
-                border: border == null
-                    ? null
-                    : isRowsEmpty(fixedRows) && isRowsEmpty(fixedColumnsRows)
-                        ? border
-                        : !isRowsEmpty(fixedRows) &&
-                                !isRowsEmpty(fixedColumnsRows)
-                            ? TableBorder(
-                                //top: border!.top,
-                                //left: border!.left,
-                                right: border!.right,
-                                bottom: border!.bottom,
-                                verticalInside: border!.verticalInside,
-                                horizontalInside: border!.horizontalInside,
-                                borderRadius: border!.borderRadius)
-                            : isRowsEmpty(fixedRows)
-                                ? TableBorder(
-                                    top: border!.top,
-                                    //left: border!.left,
-                                    right: border!.right,
-                                    bottom: border!.bottom,
-                                    verticalInside: border!.verticalInside,
-                                    horizontalInside: border!.horizontalInside,
-                                    borderRadius: border!.borderRadius)
-                                : TableBorder(
-                                    //top: border!.top,
-                                    left: border!.left,
-                                    right: border!.right,
-                                    bottom: border!.bottom,
-                                    verticalInside: border!.verticalInside,
-                                    horizontalInside: border!.horizontalInside,
-                                    borderRadius: border!.borderRadius));
+              columnWidths:
+                  actualFixedColumns > 0 ? rightWidthsAsMap : widthsAsMap,
+              children: coreRows ?? [],
+              border: border == null
+                  ? null
+                  : isRowsEmpty(fixedRows) && isRowsEmpty(fixedColumnsRows)
+                      ? border
+                      : !isRowsEmpty(fixedRows) &&
+                              !isRowsEmpty(fixedColumnsRows)
+                          ? TableBorder(
+                              //top: border!.top,
+                              //left: border!.left,
+                              right: border!.right,
+                              bottom: border!.bottom,
+                              verticalInside: border!.verticalInside,
+                              horizontalInside: border!.horizontalInside,
+                              borderRadius: border!.borderRadius,
+                            )
+                          : isRowsEmpty(fixedRows)
+                              ? TableBorder(
+                                  top: border!.top,
+                                  //left: border!.left,
+                                  right: border!.right,
+                                  bottom: border!.bottom,
+                                  verticalInside: border!.verticalInside,
+                                  horizontalInside: border!.horizontalInside,
+                                  borderRadius: border!.borderRadius,
+                                )
+                              : TableBorder(
+                                  //top: border!.top,
+                                  left: border!.left,
+                                  right: border!.right,
+                                  bottom: border!.bottom,
+                                  verticalInside: border!.verticalInside,
+                                  horizontalInside: border!.horizontalInside,
+                                  borderRadius: border!.borderRadius,
+                                ),
+            );
 
-            Table? fixedRowsTabel;
+            Table? fixedRowsTable;
             Table? fixedColumnsTable;
             Table? fixedTopLeftCornerTable;
             Widget? fixedColumnAndCornerCol;
@@ -927,7 +931,7 @@ class TltDataTable extends DataTable {
                   !isRowsEmpty(fixedRows) &&
                   actualFixedColumns <
                       columns.length + (showCheckboxColumn ? 1 : 0)) {
-                fixedRowsTabel = Table(
+                fixedRowsTable = Table(
                     columnWidths:
                         actualFixedColumns > 0 ? rightWidthsAsMap : widthsAsMap,
                     children: fixedRows,
@@ -978,7 +982,7 @@ class TltDataTable extends DataTable {
                       : t;
 
               var scrollBarTheme = Theme.of(context).scrollbarTheme;
-              // flutter/lib/src/material/scrollbar.dart, scrollbar decides whther to create  Cupertino or Material scrollbar, Cupertino ignores themes
+              // flutter/lib/src/material/scrollbar.dart, scrollbar decides whether to create  Cupertino or Material scrollbar, Cupertino ignores themes
               var isiOS = Theme.of(context).platform == TargetPlatform.iOS;
 
               // For iOS/Cupertino scrollbar
@@ -996,21 +1000,24 @@ class TltDataTable extends DataTable {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ScrollConfiguration(
-                        behavior: ScrollConfiguration.of(context)
-                            .copyWith(scrollbars: false),
-                        child: SingleChildScrollView(
-                            controller: fixedRowsHorizontalController,
-                            scrollDirection: Axis.horizontal,
-                            child: (fixedRowsTabel != null)
-                                ? fixedRowsTabel
-                                // WOrkaround for a bug when there's no horizontal scrollbar should there be no this SingleChildScrollView. I.e. originally this part was ommited and not scrollable was added to the column if not fixed top row was visible
-                                : SizedBox(
-                                    height: 0,
-                                    width: widths.fold<double>(
-                                        0,
-                                        (previousValue, value) =>
-                                            previousValue + value),
-                                  ))),
+                      behavior: ScrollConfiguration.of(context)
+                          .copyWith(scrollbars: false),
+                      child: SingleChildScrollView(
+                        controller: fixedRowsHorizontalController,
+                        scrollDirection: Axis.horizontal,
+                        child: (fixedRowsTable != null)
+                            ? fixedRowsTable
+                            // WOrkaround for a bug when there's no horizontal scrollbar should there be no this SingleChildScrollView.
+                            //I.e. originally this part was omitted and not scrollable was added to the column if not fixed top row was visible
+                            : SizedBox(
+                                height: 0,
+                                width: widths.fold<double>(
+                                    0,
+                                    (previousValue, value) =>
+                                        previousValue + value),
+                              ),
+                      ),
+                    ),
                     Expanded(
                       // fit: FlexFit.tight,
                       child: Scrollbar(
@@ -1039,59 +1046,75 @@ class TltDataTable extends DataTable {
                 ),
               );
 
-              fixedColumnAndCornerCol = fixedTopLeftCornerTable == null &&
-                      fixedColumnsTable == null
-                  ? null
-                  : Column(mainAxisSize: MainAxisSize.min, children: [
-                      if (fixedTopLeftCornerTable != null)
-                        fixedTopLeftCornerTable,
-                      if (fixedColumnsTable != null)
-                        Flexible(
-                            fit: FlexFit.loose,
-                            child: ScrollConfiguration(
-                                behavior: ScrollConfiguration.of(context)
-                                    .copyWith(scrollbars: false),
-                                child: SingleChildScrollView(
-                                    controller: leftColumnVerticalContoller,
+              fixedColumnAndCornerCol =
+                  fixedTopLeftCornerTable == null && fixedColumnsTable == null
+                      ? null
+                      : Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (fixedTopLeftCornerTable != null)
+                              fixedTopLeftCornerTable,
+                            if (fixedColumnsTable != null)
+                              Flexible(
+                                fit: FlexFit.loose,
+                                child: ScrollConfiguration(
+                                  behavior: ScrollConfiguration.of(context)
+                                      .copyWith(scrollbars: false),
+                                  child: SingleChildScrollView(
+                                    controller: leftColumnVerticalController,
                                     scrollDirection: Axis.vertical,
-                                    child: addBottomMargin(fixedColumnsTable))))
-                    ]);
+                                    child: addBottomMargin(fixedColumnsTable),
+                                  ),
+                                ),
+                              )
+                          ],
+                        );
             }
 
             var completeWidget = Container(
-                decoration: decoration ?? theme.dataTableTheme.decoration,
-                child: Material(
-                    type: MaterialType.transparency,
-                    borderRadius: border?.borderRadius,
-                    clipBehavior: clipBehavior,
-                    child: rows.isEmpty
-                        ? Column(children: [
-                            SingleChildScrollView(
-                                controller: coreHorizontalController,
-                                scrollDirection: Axis.horizontal,
-                                child: Table(
-                                    columnWidths: widthsAsMap,
-                                    border: border,
-                                    children: [headingRow])),
+              decoration: decoration ?? theme.dataTableTheme.decoration,
+              child: Material(
+                type: MaterialType.transparency,
+                borderRadius: border?.borderRadius,
+                clipBehavior: clipBehavior,
+                child: rows.isEmpty
+                    ? Column(
+                        children: [
+                          SingleChildScrollView(
+                            controller: coreHorizontalController,
+                            scrollDirection: Axis.horizontal,
+                            child: Table(
+                              columnWidths: widthsAsMap,
+                              border: border,
+                              children: [headingRow],
+                            ),
+                          ),
+                          Flexible(
+                            fit: FlexFit.tight,
+                            child: empty ?? const SizedBox(),
+                          )
+                        ],
+                      )
+                    : Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (fixedColumnAndCornerCol != null)
+                            fixedColumnAndCornerCol,
+                          if (fixedRowsAndCoreCol != null)
                             Flexible(
-                                fit: FlexFit.tight,
-                                child: empty ?? const SizedBox())
-                          ])
-                        : Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (fixedColumnAndCornerCol != null)
-                                fixedColumnAndCornerCol,
-                              if (fixedRowsAndCoreCol != null)
-                                Flexible(
-                                    fit: FlexFit.tight,
-                                    child: fixedRowsAndCoreCol)
-                            ],
-                          )));
+                              fit: FlexFit.tight,
+                              child: fixedRowsAndCoreCol,
+                            )
+                        ],
+                      ),
+              ),
+            );
 
             return completeWidget;
-          });
-    });
+          },
+        );
+      },
+    );
 
     sw.stop();
 
@@ -1168,7 +1191,7 @@ class TltDataTable extends DataTable {
             },
             onCheckboxChanged: row.onSelectChanged,
             overlayColor: row.color ?? effectiveDataRowColor,
-            checkboxTheme: datarowCheckboxTheme,
+            checkboxTheme: dataRowCheckboxTheme,
             tristate: false,
             rowHeight: rows[rowIndex] is TltDataRow
                 ? (rows[rowIndex] as TltDataRow).specificRowHeight
@@ -1219,7 +1242,7 @@ class TltDataTable extends DataTable {
                 : 0.0));
 
     assert(totalFixedWidth < totalColAvailableWidth,
-        "TltDataTable, combined width of columns of fixed width is greater than availble parent width. Table will be clipped");
+        "TltDataTable, combined width of columns of fixed width is greater than available parent width. Table will be clipped");
 
     totalColAvailableWidth =
         math.max(0.0, totalColAvailableWidth - totalFixedWidth);
@@ -1245,7 +1268,7 @@ class TltDataTable extends DataTable {
       return w;
     });
 
-    // scale columns to fit the total lemnght into available width
+    // scale columns to fit the total length into available width
 
     var ratio = totalColAvailableWidth / totalColCalculatedWidth;
     for (var i = 0; i < widths.length; i++) {
@@ -1323,7 +1346,7 @@ class TltDataTable extends DataTable {
           return TableRow(
             key: rows[rowStartIndex + actualIndex].key,
             decoration: BoxDecoration(
-              // Changed standard behaviour to never add border should the thickness be 0
+              // Changed standard behavior to never add border should the thickness be 0
               border: dividerThickness == null ||
                       (dividerThickness != null && dividerThickness != 0.0)
                   ? border
@@ -1349,7 +1372,7 @@ class TltDataTable extends DataTable {
     var headingRow = TableRow(
       key: _headingRowKey,
       decoration: BoxDecoration(
-        // Changed standard behaviour to never add border should the thickness be 0
+        // Changed standard behavior to never add border should the thickness be 0
         border: showBottomBorder &&
                 border == null &&
                 (dividerThickness == null ||
@@ -1527,7 +1550,7 @@ class _NullWidget extends Widget {
 }
 // coverage:ignore-end
 
-/// Creates pairs of scroll controllers which can be provided to scrollables and ensure that
+/// Creates pairs of scroll controllers which can be provided to scrollable and ensure that
 /// offset change in one scrollable scroll the second one (and vice a versa)
 /// There's a bug (or feature) on iOS with bouncing scroll (when it goes out of range)
 /// when scrollable get out of sync while in this bouncing position
@@ -1555,7 +1578,7 @@ class SyncedScrollControllers extends StatefulWidget {
   final bool sc22toSc21Position;
 
   /// Positions of 2 pairs of scroll controllers (sc11|sc12 and sc21|sc22)
-  /// will be synchronized, attached scrollables will copy the positions
+  /// will be synchronized, attached scrollable will copy the positions
   final Widget Function(
       BuildContext context,
       ScrollController sc11,

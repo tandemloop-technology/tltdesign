@@ -408,7 +408,6 @@ class _TltPaginationState extends State<TltPagination> {
                               // print(i == widget.totalPages - 3);
                             } else if (i == _index1 - 1) {
                               if (_index1 > 5) {
-                                // print("wdfcas");
                                 _index1 -= 2;
                                 _index2 -= 2;
                                 _displayList = getDisplayList(_index1, _index2);

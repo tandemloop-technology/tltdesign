@@ -189,12 +189,12 @@ class TltSwitch extends StatefulWidget {
   final EdgeInsets? padding;
 
   /// The icon inside the Thumb when the given value is true.
-  /// activeIcon can be an Icon Widget, an Image or Fontawesome Icons.
+  /// activeIcon can be an Icon Widget, an Image.
   ///
   final Widget? activeIcon;
 
   /// The icon inside the Thumb when the given value is false.
-  /// inactiveIcon can be an Icon Widget, an Image or Fontawesome Icons.
+  /// inactiveIcon can be an Icon Widget, an Image.
   ///
   final Widget? inactiveIcon;
 
@@ -215,10 +215,10 @@ class TltSwitch extends StatefulWidget {
   final FocusNode? focusNode;
 
   @override
-  _FlutterSwitchState createState() => _FlutterSwitchState();
+  FlutterSwitchState createState() => FlutterSwitchState();
 }
 
-class _FlutterSwitchState extends State<TltSwitch>
+class FlutterSwitchState extends State<TltSwitch>
     with SingleTickerProviderStateMixin {
   static final TltTheme _theme = TltTheme.instance;
   late final Animation _toggleAnimation;
