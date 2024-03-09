@@ -293,6 +293,6 @@ class TltIconData extends IconData {
       : super(
           codePoint,
           fontFamily: "tandemloop_icons",
-          fontPackage: "tandemloop",
+          fontPackage: "tlt_design",
         );
 }

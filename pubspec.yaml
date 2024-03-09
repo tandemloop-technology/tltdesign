@@ -25,4 +25,4 @@ flutter:
         - asset: fonts/tandemloop_icons.ttf
     - family: iconsax
       fonts:
-        - asset: fonts/tandemloop_icons_new.ttf
+        - asset: fonts/tandemloop_icons_v2.ttf
