@@ -1,8 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tlt_design/src/foundations/colors.dart';
-import 'package:tlt_design/src/utils/properties.dart';
 import 'package:tlt_design/src/foundations/text_styles.dart';
+import 'package:tlt_design/src/utils/icons.dart';
+import 'package:tlt_design/src/utils/properties.dart';
 
 class TltTheme {
   TltTheme._privateTheme();
@@ -87,7 +88,7 @@ class TltTheme {
   TltSize avatarSize = TltSize.md;
   Color avatarBackgroundColor = TltColors.blue[25];
   Color avatarFocusColor = TltColors.blue[100];
-  // Widget avatarChild = const Icon(TltIcons.user, color: TltColors.blue);   //TODO
+  Widget avatarChild = const Icon(TltIcons.user, color: TltColors.blue);
   Color avatarForegroundColor = TltColors.black;
   Color avatarIndicatorColor = TltColors.success;
   double avatarIndicatorSize = 20;
