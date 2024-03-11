@@ -298,10 +298,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   TltButton(
                     text: 'Button',
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 10),
+                      horizontal: 16,
+                      vertical: 10,
+                    ),
                     buttonSize: TltSize.lg,
                     suffix: const Icon(
-                      TltIcons.chevron_down,
+                      TltIcons.home,
                       color: TltColors.white,
                     ),
                     onTap: () {},
