@@ -3915,20 +3915,21 @@ class TandemloopDesignSystem extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const TltYSpace(18),
-            Center(
-              child: Card(
-                color: TltColors.blue[100],
-                child: SizedBox(
-                  height: 630,
-                  width: 300,
-                  child: TltTableCalendar(
-                      focusedDay: DateTime.now(),
-                      firstDay: DateTime(2020),
-                      lastDay: DateTime(2030)),
-                ),
-              ),
-            ),
+            // const TltYSpace(18),
+            // Center(
+            //   child: Card(
+            //     color: TltColors.blue[100],
+            //     child: SizedBox(
+            //       height: 630,
+            //       width: 300,
+            //       child: TltTableCalendar(
+            //         focusedDay: DateTime.now(),
+            //         firstDay: DateTime(2020),
+            //         lastDay: DateTime(2030),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             const TltYSpace(30),
           ],
         ),
