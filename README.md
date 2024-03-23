@@ -135,7 +135,7 @@ This package is developed and maintained by [Tandemloop](https://tandemloop.in/h
 
 ### The Team
 
-- [Gopi](https://github.com/developer1) - The visionary behind the architecture and standards.
+- [Gopi](https://github.com/Gopi-p) - The visionary behind the architecture and standards.
 - [Ajay](https://github.com/Che-ekU) - The wizard of widgets and design.
 - [Alfahad](https://github.com/developer3) - The guru of stability and performance.
 
@@ -145,4 +145,4 @@ For more information on how you can contribute, please visit our [Contributing G
 
 ## License
 
-Tlt Design is released under the [license name]. Please see the [LICENSE](LICENSE) file for more information.
+Tlt Design is released under the MIT license with additional restriction. Please see the [LICENSE](LICENSE) file for more information.
