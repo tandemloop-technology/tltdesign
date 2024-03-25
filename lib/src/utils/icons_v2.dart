@@ -2,6 +2,19 @@
 
 import 'package:flutter/widgets.dart';
 
+/// Second version of tlt design icons.
+///
+/// Here the iconsax icons are listed.
+///
+/// Note: Some of the icons won't render as expected. So always use only the first icons in the variant.
+///
+/// For an example: choose archive (the first one in the variant)
+/// - archive,
+/// - archive_1,
+/// - archive_2,
+/// - archive_3,
+/// - archive_4,
+/// - archive_5
 class TltIcons2 {
   const TltIcons2._();
 

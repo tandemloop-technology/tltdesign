@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// A class containing static methods to generate box shadow configurations of various strengths and sizes.
 class TltShadow {
+  /// Generates a list of box shadows of extra small size and light strength.
   static List<BoxShadow> xs({Color? color}) => [
         BoxShadow(
           color: color ?? const Color(0x0c101828),
@@ -9,6 +11,7 @@ class TltShadow {
         ),
       ];
 
+  /// Generates a list of box shadows of small size and moderate strength.
   static List<BoxShadow> sm({Color? color}) => [
         const BoxShadow(
           color: Color(0x0f101828),
@@ -22,6 +25,7 @@ class TltShadow {
         ),
       ];
 
+  /// Generates a list of box shadows of medium size and moderate strength.
   static List<BoxShadow> md({Color? color}) => [
         BoxShadow(
           color: color ?? const Color(0x0f101828),
@@ -35,6 +39,7 @@ class TltShadow {
         ),
       ];
 
+  /// Generates a list of box shadows of large size and strong strength.
   static List<BoxShadow> lg({Color? color}) => [
         BoxShadow(
           color: color ?? const Color(0x0c101828),
@@ -48,6 +53,7 @@ class TltShadow {
         ),
       ];
 
+  /// Generates a list of box shadows of extra large size and strong strength.
   static List<BoxShadow> xl({Color? color}) => [
         BoxShadow(
           color: color ?? const Color(0x0a101828),
@@ -61,6 +67,7 @@ class TltShadow {
         ),
       ];
 
+  /// Generates a list of box shadows of double extra large size and strong strength.
   static List<BoxShadow> xxl({Color? color}) => [
         BoxShadow(
           color: color ?? const Color(0x3f0f1728),
@@ -69,6 +76,7 @@ class TltShadow {
         ),
       ];
 
+  /// Generates a list of box shadows of triple extra large size and strong strength.
   static List<BoxShadow> xxxl({Color? color}) => [
         BoxShadow(
           color: color ?? const Color(0x330f1728),

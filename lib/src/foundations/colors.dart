@@ -260,6 +260,7 @@ class TltColors {
   );
 }
 
+/// [TltDesign] have its own Colors shade generator that is basically extends the [ColorSwatch] from material.
 class TltColorShade extends ColorSwatch<int> {
   const TltColorShade(int primary, Map<int, Color> swatch)
       : super(primary, swatch);

@@ -6,6 +6,12 @@ import 'package:tlt_design/src/foundations/colors.dart';
 import 'package:tlt_design/src/foundations/theme.dart';
 import 'package:tlt_design/src/utils/shadows.dart';
 
+/// Creates a material design switch.
+///
+/// The following arguments are required:
+///
+/// * [value] determines whether this switch is on or off.
+/// * [onToggle] is called when the user toggles the switch on or off.
 class TltSwitch extends StatefulWidget {
   static final TltTheme _theme = TltTheme.instance;
 
@@ -15,22 +21,18 @@ class TltSwitch extends StatefulWidget {
   ///
   /// * [value] determines whether this switch is on or off.
   /// * [onToggle] is called when the user toggles the switch on or off.
-  ///
-
   TltSwitch({
     Key? key,
     required this.value,
     required this.onToggle,
     Color? activeTrackColor,
     Color? inactiveTrackColor,
-    // Color? thumbColor,
     Color? activeThumbColor,
     Color? inactiveThumbColor,
     double? width,
     double? height,
     this.thumbSize,
     BorderRadius? borderRadius,
-    // EdgeInsets? padding,
     this.showOnOff = false,
     this.activeText,
     TextStyle? activeTextStyle,
@@ -84,15 +86,6 @@ class TltSwitch extends StatefulWidget {
     Duration? duration,
     this.enabled = true,
     DragStartBehavior? dragStartBehavior,
-    // this.focusNode,
-    // this.thumbSize,
-    // this.showOnOff = false,
-    // this.activeText,
-    // TextStyle? activeTextStyle,
-    // this.inactiveText,
-    // TextStyle? inactiveTextStyle,
-    // this.activeIcon,
-    // this.inactiveIcon,
   })  : constructorName = 'custom',
         activeTrackColor = activeTrackColor ?? _theme.toggleActiveColor,
         inactiveTrackColor = inactiveTrackColor ?? _theme.toggleInActiveColor,
@@ -286,14 +279,6 @@ class FlutterSwitchState extends State<TltSwitch>
         widget.value ? widget.activeTrackColor : widget.inactiveTrackColor;
     Color thumbColor =
         widget.value ? widget.activeThumbColor : widget.inactiveThumbColor;
-
-    // if (widget.value) {
-    //   _toggleColor = widget.activeThumbColor ?? widget.thumbColor;
-    //   _switchColor = widget.activeTrackColor;
-    // } else {
-    //   _toggleColor = widget.inactiveThumbColor ?? widget.thumbColor;
-    //   _switchColor = widget.inactiveTrackColor;
-    // }
 
     double thumbSize = (widget.constructorName == "custom")
         ? widget.height * 0.85 -

@@ -1,6 +1,6 @@
 ## Welcome to the Tltdesign Repository!
 
-We appreciate your interest in contributing to our open-source project. By participating in this project, you agree to abide by our [Code of Conduct](https://github.com/tandemloop-technology/tltdesign/CODE_OF_CONDUCT.md).
+We appreciate your interest in contributing to our open-source project. By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ### How to Contribute
 
