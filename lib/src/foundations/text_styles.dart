@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
+/// [TltStyles] defines 17 text styles which can be used directly to style any type of
+/// text in the flutter.
+///
+/// Also to override the default values used in the components, try changing the value in [TltTheme].
 class TltStyles {
   /// Heading 1 TextStyle
   static final TextStyle heading1 = TextStyle(

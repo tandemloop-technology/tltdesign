@@ -2,19 +2,19 @@ library tlt_design;
 
 /// [tlt_design] exports
 
-// Foundations exports
+/// Foundations exports
 export 'src/foundations/colors.dart';
 export 'src/utils/helpers.dart';
 export 'src/utils/properties.dart';
 export 'src/foundations/text_styles.dart';
 export 'src/foundations/theme.dart';
 
-// Utils exports
+/// Utils exports
 export 'src/utils/icons.dart';
 export 'src/utils/icons_v2.dart';
 export 'src/utils/shadows.dart';
 
-// Components exports
+/// Components exports
 export 'src/components/items.dart';
 export 'src/components/avatar.dart';
 export 'src/components/badge.dart';
