@@ -909,10 +909,6 @@ class _TooltipOverlay extends StatelessWidget {
               widthFactor: 1.0,
               heightFactor: 1.0,
               child: content,
-              // child: Text.rich(
-              //   richMessage,
-              //   style: textStyle,
-              // ),
             ),
           ),
         ),
@@ -953,12 +949,6 @@ Offset customPositionDependentBox({
 }) {
   // VERTICAL DIRECTION
   const double offsetFactor = 1;
-  // arrowAlignment == TltArrowAlignment.center
-  //     ? 1
-  //     : arrowAlignment == TltArrowAlignment.left
-  //         ? (1 / 2.3)
-  //         : 0.9;
-  // verticalOffset = childSize.height * 2.7;
   final bool fitsBelow =
       target.dy + verticalOffset + childSize.height <= size.height - margin;
   final bool fitsAbove =
@@ -1009,17 +999,9 @@ Offset horizontalPositionDependentBox({
   double verticalOffset = 0.0,
   double horizontalOffset = 0.0,
   double margin = 10.0,
-  // required TltArrowAlignment arrowAlignment,
-  // double offsetFactor = 1 / 1.84,
-  // double offsetFactor = 2.6,
 }) {
   // Horizontal DIRECTION
   const double offsetFactor = 1;
-  // final double offsetFactor = arrowAlignment == TltArrowAlignment.center
-  //     ? 1
-  //     : arrowAlignment == TltArrowAlignment.left
-  //         ? 2.4
-  //         : (1 / 0.9);
   final bool fitsLeft =
       target.dx + horizontalOffset + childSize.width <= size.width - margin;
   final bool fitsRight =
@@ -1034,35 +1016,21 @@ Offset horizontalPositionDependentBox({
   }
   // Vertical DIRECTION
   double y;
-  // if (arrowAlignment == TltArrowAlignment.right) {
-  //   y = (size.height / offsetFactor - childSize.height / offsetFactor) / 2.0;
-  // } else {
   if (size.height - margin * 2.0 < childSize.height) {
     y = (size.height / offsetFactor - childSize.height / offsetFactor) / 2.0;
   } else {
     final double normalizedTargetY =
         target.dy.clamp(margin, size.height / offsetFactor - margin);
-    // final double edge = margin + childSize.height / offsetFactor / 2.0;
-    // if (normalizedTargetY < edge && arrowAlignment != TltArrowAlignment.left) {
-    //   y = margin;
-    // } else if (normalizedTargetY > size.height / offsetFactor - edge &&
-    //     arrowAlignment != TltArrowAlignment.left) {
-    //   y = size.height / offsetFactor - margin - childSize.height / offsetFactor;
-    // } else {
     y = normalizedTargetY - childSize.height / offsetFactor / 2.0;
-    // }
-    // }
   }
   y = verticalOffset == 24 ? y + verticalOffset * -0.0166 : y + verticalOffset;
   return Offset(x, y);
 }
 
 class TooltipShape extends ShapeBorder {
-  // final TltArrowAlignment arrowAlignment;
   final TltArrowPosition arrowPosition;
   final double? borderRadius;
   const TooltipShape({
-    // required this.arrowAlignment,
     required this.arrowPosition,
     this.borderRadius,
   });
@@ -1139,15 +1107,7 @@ class TooltipShape extends ShapeBorder {
       return Path()
         ..addRRect(RRect.fromRectAndRadius(
             rect, Radius.circular(borderRadius ?? rect.height / 8)))
-        ..moveTo(
-            rect.centerRight.dx,
-            // arrowAlignment == TltArrowAlignment.center
-            //     ?
-            rect.centerRight.dy - 4
-            // : arrowAlignment == TltArrowAlignment.left
-            //     ? rect.centerRight.dy * 0.3
-            //     : rect.centerRight.dy * 1.2
-            )
+        ..moveTo(rect.centerRight.dx, rect.centerRight.dy - 4)
         ..relativeLineTo(6.5, 5)
         ..relativeLineTo(-6.5, 5)
         ..close();

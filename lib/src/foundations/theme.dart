@@ -5,6 +5,31 @@ import 'package:tlt_design/src/foundations/text_styles.dart';
 import 'package:tlt_design/src/utils/icons.dart';
 import 'package:tlt_design/src/utils/properties.dart';
 
+/// [TltTheme] is the standalone singleton class which can be used to change the overall appearance of the TltDesign components.
+///
+/// Unlike material theme system, here you will get flexibility to customize each and every behavior of the component.
+///
+/// To do so->
+///
+/// ```dart
+/// // Create a function with [TltTheme] instance.
+/// void changeTltThemeData() {
+///   final TltTheme theme = TltTheme.instance;
+///   theme.primaryColor = Colors.red;
+/// }
+/// ```
+///
+/// And call this function as per your need. calling it in main function before the runApp is recommended.
+///
+/// ```dart
+/// void main() {
+///  changeTheme();
+///  runApp(const MyApp());
+/// }
+/// ```
+/// Find the list of variable that you can override here ->
+/// https://github.com/tandemloop-technology/tltdesign/blob/beta/lib/src/foundations/theme.dart
+
 class TltTheme {
   TltTheme._privateTheme();
   static final TltTheme _tltTheme = TltTheme._privateTheme();

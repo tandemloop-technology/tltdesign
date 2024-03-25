@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 
+/// [TltIcons] is a collections of beautiful icons.
+///
+/// You can use this directly to any of the widgets that accepts IconData.
 class TltIcons {
   TltIcons._();
 

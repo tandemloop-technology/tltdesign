@@ -3,37 +3,147 @@ import 'package:tlt_design/src/foundations/colors.dart';
 
 import '../foundations/theme.dart';
 
-enum TltButtonType { primary, secondary, outline, link }
+/// Enum defining the types of buttons in the TltButton widget.
+enum TltButtonType {
+  /// Primary button style
+  primary,
 
-enum TltSize { xs, sm, md, lg, xl, xxl }
+  /// Secondary button style
+  secondary,
 
-enum TltSliderIndicatorMode { tooltip, textOnly, never }
+  /// Button with outline style
+  outline,
 
-enum TltProgressIndicatorTooltipMode { onHover, always, never }
+  /// Button with hyperlink style
+  link
+}
 
-enum TltProgressIndicatorTrailPosition { centerRight, bottomRight }
+/// Enum defining various sizes for UI elements.
+enum TltSize {
+  /// Extra small size
+  xs,
 
-enum TltVisibility { never, always, onInteraction }
+  /// Small size
+  sm,
 
+  /// Medium size
+  md,
+
+  /// Large size
+  lg,
+
+  /// Extra large size
+  xl,
+
+  /// Double extra large size
+  xxl
+}
+
+/// Enum defining different modes for slider indicators.
+enum TltSliderIndicatorMode {
+  /// Indicator with tooltip
+  tooltip,
+
+  /// Indicator with text only
+  textOnly,
+
+  /// Indicator hidden
+  never
+}
+
+/// Enum defining when progress indicator tooltips should be displayed.
+enum TltProgressIndicatorTooltipMode {
+  /// Display tooltip on hover
+  onHover,
+
+  /// Always display tooltip
+  always,
+
+  /// Never display tooltip
+  never
+}
+
+/// Enum defining the position of the progress indicator trail.
+enum TltProgressIndicatorTrailPosition {
+  /// Trail positioned at center right
+  centerRight,
+
+  /// Trail positioned at bottom right
+  bottomRight
+}
+
+/// Enum defining visibility options for UI elements.
+enum TltVisibility {
+  /// Never visible
+  never,
+
+  /// Always visible
+  always,
+
+  /// Visible on interaction
+  onInteraction
+}
+
+/// Enum defining various positions for arrows.
 enum TltArrowPosition {
+  /// Hide the arrow
   hide,
+
+  /// Arrow positioned to the left
   left,
+
+  /// Arrow positioned to the right
   right,
+
+  /// Arrow positioned at the top right
   topRight,
+
+  /// Arrow positioned at the top left
   topLeft,
+
+  /// Arrow positioned at the top center
   topCenter,
+
+  /// Arrow positioned at the bottom right
   bottomRight,
+
+  /// Arrow positioned at the bottom left
   bottomLeft,
+
+  /// Arrow positioned at the bottom center
   bottomCenter
 }
 
-enum TltArrowAlignment { center, left, right }
+/// Enum defining alignment options for arrows.
+enum TltArrowAlignment {
+  /// Align arrow to the center
+  center,
 
-enum TltArcType { half }
+  /// Align arrow to the left
+  left,
 
-enum CircularStrokeCap { round, square }
+  /// Align arrow to the right
+  right
+}
 
+/// Enum defining types of arcs.
+enum TltArcType {
+  /// Half arc
+  half
+}
+
+/// Enum defining stroke cap options for circular widgets.
+enum CircularStrokeCap {
+  /// Rounded stroke cap
+  round,
+
+  /// Square stroke cap
+  square
+}
+
+/// Extension providing stroke cap for CircularStrokeCap enum.
 extension CircularStrokeCapExtension on CircularStrokeCap {
+  /// Retrieves the corresponding StrokeCap for CircularStrokeCap
   StrokeCap get strokeCap {
     switch (this) {
       // case CircularStrokeCap.butt:
@@ -46,9 +156,23 @@ extension CircularStrokeCapExtension on CircularStrokeCap {
   }
 }
 
-enum TltBreadCrumbSeparator { slash, arrow }
+/// Enum defining separators for breadcrumbs.
+enum TltBreadCrumbSeparator {
+  /// Separator as slash (/)
+  slash,
 
-enum TltTabDecoration { underline, button }
+  /// Separator as arrow (>)
+  arrow
+}
+
+/// Enum defining decoration options for tabs.
+enum TltTabDecoration {
+  /// Tab decoration with underline
+  underline,
+
+  /// Tab decoration with button style
+  button
+}
 
 /// [TltPaginationSize] is used to specify the pagination size, either 'compact' or 'expanded'.
 enum TltPaginationSize {
@@ -518,11 +642,23 @@ class TltInputDecoration extends InputDecoration {
   }
 }
 
+/// A class representing decoration options for add-ons in [TltTextField, TltTextFormField, etc.,].
 class TltAddOnDecoration {
+  /// The fill color of the add-on.
   final Color? fillColor;
+
+  /// The border radius of the add-on.
+  ///
+  /// This is smart enough to identify the add-on is before or after and applies the
+  /// border accordingly.
   final BorderRadius? borderRadius;
+
+  /// The border of the add-on.
   final BoxBorder? border;
+
+  /// The padding of the add-on.
   final EdgeInsetsGeometry? padding;
+
   const TltAddOnDecoration({
     this.fillColor,
     this.borderRadius,
@@ -531,15 +667,37 @@ class TltAddOnDecoration {
   });
 }
 
+/// A common type representing decoration options for colors in UI elements.
+///
+/// Some of the widget will not possess some the included parameters.
+///
+/// In that case values will be ignored if it passed.
 class TltColorDecoration {
+  /// The background color.
   final Color? backgroundColor;
+
+  /// The text color.
   final Color? textColor;
+
+  /// The color of icons.
   final Color? iconColor;
+
+  /// The color on hover.
   final Color? hoverColor;
+
+  /// The color on splash.
   final Color? splashColor;
+
+  /// The color on highlight.
   final Color? highlightColor;
+
+  /// The overlay color.
   final Color? overlayColor;
+
+  /// The border color.
   final Color? borderColor;
+
+  /// The shadow color.
   final Color? shadowColor;
 
   TltColorDecoration({

@@ -4,10 +4,12 @@ import 'dart:math' as math;
 
 import 'package:tlt_design/src/utils/properties.dart';
 
+/// A custom slider value indicator shape.
 class TltSliderValueIndicatorShape extends SliderComponentShape {
   final TltSliderIndicatorMode mode;
   late final _TltSliderValueIndicatorPathPainter _pathPainter;
 
+  /// Constructs a [TltSliderValueIndicatorShape] with the specified mode (TltSliderIndicatorMode).
   TltSliderValueIndicatorShape({required this.mode}) {
     _pathPainter = _TltSliderValueIndicatorPathPainter(mode: mode);
   }
@@ -21,6 +23,8 @@ class TltSliderValueIndicatorShape extends SliderComponentShape {
   }) {
     assert(labelPainter != null);
     assert(textScaleFactor != null && textScaleFactor >= 0);
+
+    /// Get preferred size using the custom path painter
     return _pathPainter.getPreferredSize(labelPainter!, textScaleFactor!);
   }
 
@@ -41,6 +45,8 @@ class TltSliderValueIndicatorShape extends SliderComponentShape {
   }) {
     final Canvas canvas = context.canvas;
     final double scale = activationAnimation.value;
+
+    /// Paint using the custom path painter
     _pathPainter.paint(
       parentBox: parentBox,
       canvas: canvas,
@@ -54,10 +60,12 @@ class TltSliderValueIndicatorShape extends SliderComponentShape {
   }
 }
 
+/// A custom range slider value indicator shape.
 class TltRangeSliderValueIndicatorShape extends RangeSliderValueIndicatorShape {
   final TltSliderIndicatorMode mode;
   late final _TltSliderValueIndicatorPathPainter _pathPainter;
 
+  /// Constructs a [TltRangeSliderValueIndicatorShape] with the specified mode(TltSliderIndicatorMode).
   TltRangeSliderValueIndicatorShape({required this.mode}) {
     _pathPainter = _TltSliderValueIndicatorPathPainter(mode: mode);
   }
@@ -70,6 +78,8 @@ class TltRangeSliderValueIndicatorShape extends RangeSliderValueIndicatorShape {
     required double textScaleFactor,
   }) {
     assert(textScaleFactor >= 0);
+
+    /// Get preferred size using the custom path painter
     return _pathPainter.getPreferredSize(labelPainter, textScaleFactor);
   }
 
@@ -111,6 +121,8 @@ class TltRangeSliderValueIndicatorShape extends RangeSliderValueIndicatorShape {
   }) {
     final Canvas canvas = context.canvas;
     final double scale = activationAnimation!.value;
+
+    /// Paint using the custom path painter
     _pathPainter.paint(
       parentBox: parentBox!,
       canvas: canvas,
@@ -166,10 +178,10 @@ class _TltSliderValueIndicatorPathPainter {
     /// we are making sure we use the bounds of the Overlay instead of the Slider.
     final Offset globalCenter = parentBox.localToGlobal(center);
 
-    // The rectangle must be shifted towards the center so that it minimizes the
-    // chance of it rendering outside the bounds of the render box. If the shift
-    // is negative, then the lobe is shifted from right to left, and if it is
-    // positive, then the lobe is shifted from left to right.
+    /// The rectangle must be shifted towards the center so that it minimizes the
+    /// chance of it rendering outside the bounds of the render box. If the shift
+    /// is negative, then the lobe is shifted from right to left, and if it is
+    /// positive, then the lobe is shifted from left to right.
     final double overflowLeft =
         math.max(0, rectangleWidth / 2 - globalCenter.dx + edgePadding);
     final double overflowRight = math.max(
