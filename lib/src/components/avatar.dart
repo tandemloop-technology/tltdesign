@@ -5,10 +5,9 @@ import 'package:tlt_design/src/foundations/colors.dart';
 import 'package:tlt_design/src/foundations/theme.dart';
 import 'package:tlt_design/src/utils/properties.dart';
 
-/// [showIndicator] if set to true, a circle indicator is shown, and can be set to true/false to indicate active/inactive status by changing [indicator]
-
 final TltTheme _theme = TltTheme.instance;
 
+/// [showIndicator] if set to true, a circle indicator is shown, and can be set to true/false to indicate active/inactive status by changing [indicator]
 class TltAvatar extends StatelessWidget {
   /// [showIndicator] if set to true, a circle indicator is shown, and can be set to true/false to indicate active/inactive status by changing [indicator]
   TltAvatar({

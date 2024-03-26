@@ -26,10 +26,6 @@ export 'package:flutter/services.dart'
         TextInputAction,
         TextInputType;
 
-// Examples can assume:
-// late BuildContext context;
-// late FocusNode myFocusNode;
-
 /// Signature for the [TltNewTextField.buildCounter] callback.
 typedef InputCounterWidgetBuilder = Widget? Function(
   /// The build context for the TltNewTextField.

@@ -36,15 +36,6 @@ class TltBadge extends StatelessWidget {
         padding = padding ?? _theme.badgePadding,
         selectedColor = selectedColor ?? _theme.badgeSelectedColor,
         suffixTooltip = suffixTooltip ?? _theme.badgeSuffixTooltip,
-        // label = label ??
-        //     Text(
-        //       "Label",
-        //       style: TextStyle(
-        //           color: TltColors.blue[700],
-        //           fontSize: 12,
-        //           height: 1,
-        //           fontWeight: FontWeight.w600),
-        //     ),
         super(key: key);
 
   final Border? borderStyle;

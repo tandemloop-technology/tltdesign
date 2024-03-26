@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TlTRadio<T> extends StatefulWidget {
-  const TlTRadio({
+class TltRadio<T> extends StatefulWidget {
+  const TltRadio({
     super.key,
     required this.value,
     required this.groupValue,
@@ -58,10 +58,10 @@ class TlTRadio<T> extends StatefulWidget {
   bool get _selected => value == groupValue;
 
   @override
-  State<TlTRadio<T>> createState() => _RadioState<T>();
+  State<TltRadio<T>> createState() => _RadioState<T>();
 }
 
-class _RadioState<T> extends State<TlTRadio<T>>
+class _RadioState<T> extends State<TltRadio<T>>
     with TickerProviderStateMixin, ToggleableStateMixin {
   late double _kOuterRadius;
 // = 11.0;
@@ -102,7 +102,7 @@ class _RadioState<T> extends State<TlTRadio<T>>
   }
 
   @override
-  void didUpdateWidget(covariant TlTRadio<T> oldWidget) {
+  void didUpdateWidget(covariant TltRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget._selected != oldWidget._selected) {
       animateToValue();

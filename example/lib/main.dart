@@ -3453,26 +3453,26 @@ class TandemloopDesignSystem extends StatelessWidget {
             const TltYSpace(18),
             Row(
               children: [
-                TlTRadio(
+                TltRadio(
                   value: false,
                   groupValue: true,
                   onChanged: (value) {},
                 ),
                 const TltXSpace(20),
-                TlTRadio(
+                TltRadio(
                   value: true,
                   groupValue: true,
                   onChanged: (value) {},
                 ),
                 const TltXSpace(20),
-                TlTRadio(
+                TltRadio(
                   value: false,
                   fillColor: MaterialStatePropertyAll(TltColors.gray[200]),
                   groupValue: true,
                   onChanged: null,
                 ),
                 const TltXSpace(20),
-                const TlTRadio(
+                const TltRadio(
                   value: false,
                   // disableButton: true,
                   groupValue: false,
@@ -3488,7 +3488,7 @@ class TandemloopDesignSystem extends StatelessWidget {
               children: [
                 SizedBox(
                   width: 200,
-                  child: TlTRadioListTile(
+                  child: TltRadioListTile(
                     title: const Text('Remember me'),
                     value: true,
                     groupValue: false,
@@ -3498,7 +3498,7 @@ class TandemloopDesignSystem extends StatelessWidget {
                 const TltXSpace(20),
                 SizedBox(
                   width: 200,
-                  child: TlTRadioListTile(
+                  child: TltRadioListTile(
                     title: const Text('Remember me'),
                     value: true,
                     groupValue: true,
@@ -3508,7 +3508,7 @@ class TandemloopDesignSystem extends StatelessWidget {
                 const TltXSpace(20),
                 SizedBox(
                   width: 200,
-                  child: TlTRadioListTile(
+                  child: TltRadioListTile(
                     title: const Text('Remember me'),
                     value: true,
                     disableButton: true,

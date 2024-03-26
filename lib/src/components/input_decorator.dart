@@ -10,24 +10,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:tlt_design/src/utils/properties.dart';
 
-// Examples can assume:
-// late Widget _myIcon;
-
 // The duration value extracted from:
 // https://github.com/material-components/material-components-android/blob/master/lib/java/com/google/android/material/textfield/TextInputLayout.java
 const Duration _kTransitionDuration = Duration(milliseconds: 167);
 const Curve _kTransitionCurve = Curves.fastOutSlowIn;
 const double _kFinalLabelScale = 0.75;
 
-// The default duration for hint fade in/out transitions.
-//
-// Animating hint is not mentioned in the Material specification.
-// The animation is kept for backward compatibility and a short duration
-// is used to mitigate the UX impact.
+/// The default duration for hint fade in/out transitions.
+///
+/// Animating hint is not mentioned in the Material specification.
+/// The animation is kept for backward compatibility and a short duration
+/// is used to mitigate the UX impact.
 const Duration _kHintFadeTransitionDuration = Duration(milliseconds: 20);
 
-// Defines the gap in the TltInputDecorator's outline border where the
-// floating label will appear.
+/// Defines the gap in the TltInputDecorator's outline border where the
+/// floating label will appear.
 class _InputBorderGap extends ChangeNotifier {
   double? _start;
   double? get start => _start;
@@ -69,7 +66,7 @@ class _InputBorderGap extends ChangeNotifier {
   String toString() => describeIdentity(this);
 }
 
-// Used to interpolate between two InputBorders.
+/// Used to interpolate between two InputBorders.
 class _InputBorderTween extends Tween<InputBorder> {
   _InputBorderTween({super.begin, super.end});
 
@@ -77,7 +74,7 @@ class _InputBorderTween extends Tween<InputBorder> {
   InputBorder lerp(double t) => ShapeBorder.lerp(begin, end, t)! as InputBorder;
 }
 
-// Passes the _InputBorderGap parameters along to an InputBorder's paint method.
+/// Passes the _InputBorderGap parameters along to an InputBorder's paint method.
 class _InputBorderPainter extends CustomPainter {
   _InputBorderPainter({
     required Listenable repaint,
@@ -141,10 +138,10 @@ class _InputBorderPainter extends CustomPainter {
   String toString() => describeIdentity(this);
 }
 
-// An analog of AnimatedContainer, which can animate its shaped border, for
-// _InputBorder. This specialized animated container is needed because the
-// _InputBorderGap, which is computed at layout time, is required by the
-// _InputBorder's paint method.
+/// An analog of AnimatedContainer, which can animate its shaped border, for
+/// _InputBorder. This specialized animated container is needed because the
+/// _InputBorderGap, which is computed at layout time, is required by the
+/// _InputBorder's paint method.
 class _BorderContainer extends StatefulWidget {
   const _BorderContainer({
     required this.border,
@@ -260,8 +257,8 @@ class _BorderContainerState extends State<_BorderContainer>
   }
 }
 
-// Used to "shake" the floating label to the left and right
-// when the errorText first appears.
+/// Used to "shake" the floating label to the left and right
+/// when the errorText first appears.
 class _Shaker extends AnimatedWidget {
   const _Shaker({
     required Animation<double> animation,
@@ -293,9 +290,9 @@ class _Shaker extends AnimatedWidget {
   }
 }
 
-// Display the helper and error text. When the error text appears
-// it fades and the helper text fades out. The error text also
-// slides upwards a little when it first appears.
+/// Display the helper and error text. When the error text appears
+/// it fades and the helper text fades out. The error text also
+/// slides upwards a little when it first appears.
 class _HelperError extends StatefulWidget {
   const _HelperError({
     this.textAlign,
@@ -323,8 +320,8 @@ class _HelperError extends StatefulWidget {
 
 class _HelperErrorState extends State<_HelperError>
     with SingleTickerProviderStateMixin {
-  // If the height of this widget and the counter are zero ("empty") at
-  // layout time, no space is allocated for the subtext.
+  /// If the height of this widget and the counter are zero ("empty") at
+  /// layout time, no space is allocated for the subtext.
   static const Widget empty = SizedBox.shrink();
 
   late AnimationController _controller;

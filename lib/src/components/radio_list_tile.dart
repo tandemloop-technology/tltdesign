@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tlt_design/src/components/radio.dart';
 
-class TlTRadioListTile<T> extends StatelessWidget {
-  const TlTRadioListTile({
+class TltRadioListTile<T> extends StatelessWidget {
+  const TltRadioListTile({
     Key? key,
     required this.value,
     required this.groupValue,
@@ -180,7 +180,7 @@ class TlTRadioListTile<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget control = TlTRadio<T>(
+    final Widget control = TltRadio<T>(
       disableButton: disableButton,
       value: value,
       groupValue: groupValue,
