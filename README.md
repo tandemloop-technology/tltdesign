@@ -137,7 +137,8 @@ This package is developed and maintained by [Tandemloop](https://tandemloop.in/h
 
 - [Gopi](https://github.com/Gopi-p) - The visionary behind the architecture and standards.
 - [Ajay](https://github.com/Che-ekU) - The wizard of widgets and design.
-- [Alfahad](https://github.com/developer3) - The guru of stability and performance.
+- Alfahad - The guru of stability and performance.
+<!-- - [Alfahad](https://github.com/developer3) - The guru of stability and performance. -->
 
 We warmly welcome contributions from the community. Whether you're looking to fix a bug, enhance existing features, or propose entirely new components, your input is invaluable in making the Tlt Design package even more remarkable.
 
