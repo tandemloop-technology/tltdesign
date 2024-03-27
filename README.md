@@ -1,5 +1,5 @@
 <div align='center'>
-   <img src='assets/images/tandemloop_logo.png' height='50px'></img>
+   <img src='https://raw.githubusercontent.com/tandemloop-technology/tltdesign/beta/assets/images/tandemloop_logo.png' height='50px'></img>
    <h1>Tlt Design Flutter Package</h1>
    <p>
       Tlt Design is a comprehensive Flutter package that brings the <a href="https://tltdesign.tandemloop.net/" target="_blank">Tandemloop Design System</a> to your Flutter applications. <b>Tltdesign</b> includes typography, icons, colors, and over 15 custom widgets to enhance your app development experience.
@@ -68,7 +68,7 @@ child: TltButton(
 
 # Features
 
-<img src="assets/images/features_screenshot.png" alt="Tlt Design Color palette" style="max-height: 300px;">
+<img src="https://raw.githubusercontent.com/tandemloop-technology/tltdesign/beta/assets/images/features_screenshot.png" alt="Tlt Design Color palette" style="max-height: 300px;">
 
 ## Colors
 
@@ -96,7 +96,7 @@ Text(
 
 ## Icons
 
-Tlt Design offers two sets of icons: TltIcons and TltIcons2. TltIcons includes basic icons from Tandemloop, while TltIcons2 is based on the [Iconsax](https://iconsax.io/) collection.
+Tlt Design offers two sets of icons: TltIcons and TltIcons2. TltIcons includes basic icons from Tandemloop, while TltIcons2 is based on the <a href="https://iconsax.io/" target="_blank">Iconsax</a> collection.
 
 usage example
 
@@ -127,7 +127,7 @@ TltButton(
 
 ## Example
 
-For a complete example demonstrating how to use the Tlt Design package, please refer to the [example](example/) directory in this repository.
+For a complete example demonstrating how to use the Tlt Design package, please refer to the <a href="https://github.com/tandemloop-technology/tltdesign/tree/beta/example">example</a> directory in this repository.
 
 ## Contributing
 
@@ -142,8 +142,8 @@ This package is developed and maintained by [Tandemloop](https://tandemloop.in/h
 
 We warmly welcome contributions from the community. Whether you're looking to fix a bug, enhance existing features, or propose entirely new components, your input is invaluable in making the Tlt Design package even more remarkable.
 
-For more information on how you can contribute, please visit our [Contributing Guidelines](CONTRIBUTING.md) document.
+For more information on how you can contribute, please visit our <a href="https://github.com/tandemloop-technology/tltdesign/blob/beta/CONTRIBUTING.md">Contributing Guidelines</a> document.
 
 ## License
 
-Tlt Design is released under the MIT license with additional restriction. Please see the [LICENSE](LICENSE) file for more information.
+Tlt Design is released under the MIT license with additional restriction. Please see the <a href="https://github.com/tandemloop-technology/tltdesign/blob/beta/LICENSE">LICENSE</a> file for more information.
