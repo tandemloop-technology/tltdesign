@@ -4,11 +4,19 @@ We appreciate your interest in contributing to our open-source project. By parti
 
 ### How to Contribute
 
-1. Fork the repository.
+1. Fork the repository. [What is forking](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
 2. Create a new branch for your feature or bug fix.
 3. Make your changes and ensure they follow our coding standards.
 4. Test it locally.
 5. Submit a pull request to the `beta` branch.
+
+### Code of Conduct
+
+This repository is organized into three primary branches:
+
+1. `stable` - _Production Branch_: This branch is dedicated to stable, production-ready code.
+2. `beta` - _Pull Request Branch_: All contributions from external contributors are merged into this branch for testing and review.
+3. `dev` - _Development Branch_: Internal collaborators work on this branch to develop and test new features before merging into beta.
 
 ### Code of Conduct
 
