@@ -1,3 +1,4 @@
+import 'package:example/testing.dart';
 import 'package:flutter/material.dart';
 import 'package:tlt_design/tlt_design.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const TandemloopDesignSystem(),
+      home: const TestingUi(),
     );
   }
 }
@@ -3827,7 +3828,7 @@ class TandemloopDesignSystem extends StatelessWidget {
               ),
             ),
             const TltYSpace(18),
-            TltCustomPagination(
+            TltPagination(
               currentPage: 20,
               totalPages: 45,
               onTap: [
@@ -3835,7 +3836,7 @@ class TandemloopDesignSystem extends StatelessWidget {
               ],
             ),
             const TltYSpace(50),
-            TltCustomPagination(
+            TltPagination(
               paginationType: TltPaginationType.cardButton,
               currentPage: 20,
               totalPages: 45,
@@ -3860,15 +3861,32 @@ class TandemloopDesignSystem extends StatelessWidget {
             Row(
               children: [
                 TltBreadCrumb(
+                  defaultColor: TltColors.error,
                   children: [
                     TltBreadCrumbElement(
-                      content: 'previous page',
+                      content: 'A',
                       onTap: () {},
                     ),
                     TltBreadCrumbElement(
-                      content: 'current page',
+                      content: 'B',
                       onTap: () {},
-                    )
+                    ),
+                    TltBreadCrumbElement(
+                      content: 'C',
+                      onTap: () {},
+                    ),
+                    TltBreadCrumbElement(
+                      content: 'D',
+                      onTap: () {},
+                    ),
+                    TltBreadCrumbElement(
+                      content: 'E',
+                      onTap: () {},
+                    ),
+                    TltBreadCrumbElement(
+                      content: 'F',
+                      onTap: () {},
+                    ),
                   ],
                 ),
                 const TltXSpace(50),

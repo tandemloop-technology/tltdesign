@@ -2,7 +2,7 @@
    <img src='assets/images/tandemloop_logo.svg' height='40px'></img>
    <h1>Tlt Design Flutter Package</h1>
    <p>
-      Tlt Design is a comprehensive Flutter package that brings the <a href="https://tltdesign.tandemloop.net/" target="_blank">Tandemloop Design System</a> to your Flutter applications. <b>Tltdesign</b> includes typography, icons, colors, and over 25 custom widgets to enhance your app development experience.
+      Tlt Design is a comprehensive Flutter package that brings the <a href="https://tltdesign.tandemloop.net/" target="_blank">Tandemloop Design System</a> to your Flutter applications. <b>Tltdesign</b> includes typography, icons, colors, and over 15 custom widgets to enhance your app development experience.
    </p>
    <!-- <div>
       <a title="pub.dev" href="https://pub.dartlang.org/packages/fluent_ui" >
