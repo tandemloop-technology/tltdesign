@@ -44,7 +44,7 @@ To use Tlt Design in your Flutter project, add the following to your `pubspec.ya
 
 ```yaml
 dependencies:
-  tlt_design: ^1.0.0
+  tlt_design: ^latest
 ```
 
 then run
