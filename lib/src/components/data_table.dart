@@ -18,13 +18,14 @@ class TltDataColumn extends DataColumn {
   /// Creates the configuration for a column of a [TltDataTable].
   ///
   /// The [label] argument must not be null.
-  const TltDataColumn(
-      {required super.label,
-      super.tooltip,
-      super.numeric = false,
-      super.onSort,
-      this.size = ColumnSize.M,
-      this.fixedWidth});
+  const TltDataColumn({
+    required super.label,
+    super.tooltip,
+    super.numeric = false,
+    super.onSort,
+    this.size = ColumnSize.M,
+    this.fixedWidth,
+  });
 
   /// Column sizes are determined based on available width by distributing it
   /// to individual columns accounting for their relative sizes (see [ColumnSize])
@@ -41,8 +42,6 @@ class TltDataColumn extends DataColumn {
 /// which can be useful in Desktop settings when a reaction to the right click is required.
 @immutable
 class TltDataRow extends DataRow {
-  //TltDataRow.fromDataRow(DataRow row) : this.cells = row.cells;
-
   /// Creates the configuration for a row of a [TltDataTable].
   ///
   /// The [cells] argument must not be null.

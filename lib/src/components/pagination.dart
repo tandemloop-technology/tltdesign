@@ -1,35 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:tlt_design/src/foundations/colors.dart';
 import 'package:tlt_design/src/foundations/theme.dart';
+import 'package:tlt_design/src/utils/icons.dart';
 import 'package:tlt_design/src/utils/properties.dart';
 
+/// TltPagination widget is used for navigating between screens. It requires three parameters:
+/// 1) total pages: Total number of pages in the pagination.
+/// 2) current page: The current active page.
+/// 3) onTap: Callback function triggered when a page is tapped.
+///
+/// This pagination component adapts its state based on the provided parameters.
+/// If total pages is received from the backend, the widget updates its state accordingly to activate the appropriate page.
+/// If no data is provided, the widget automatically manages its state.
+///
+/// Customization options include:
+/// - Active and inactive decoration for pagination items.
+/// - Widgets and decorations for previous and next buttons.
+/// - Ability to skip forward or backward by five pages.
+///
+/// developers can customize the pagination according to their specific requirements,
+/// adjusting decorations, button widgets, and skip page functionality as needed.
 class TltPagination extends StatefulWidget {
   static final TltTheme _theme = TltTheme.instance;
   TltPagination({
     required this.currentPage,
     required this.totalPages,
     required this.onTap,
-    // int? numberOfVisibleItems,
     BoxDecoration? activePageIndicatorDecoration,
     BoxDecoration? inactivePageIndicatorDecoration,
     BoxShape? pageIndicatorShape,
-    BorderRadiusGeometry? indicatorBorderRadius,
-    BoxDecoration? previousButtonDecoration,
-    BoxDecoration? nextButtonDecoration,
+    BorderRadius? indicatorBorderRadius,
     BoxDecoration? navigationButtonDecoration,
-    this.previousButtonChild,
-    this.nextButtonChild,
+    this.previousButtonWidget,
+    this.nextButtonWidget,
     TltPaginationSize? paginationSize,
     Alignment? paginationAlignment,
-    double? elementHeight,
-    double? elementWidth,
-    // EdgeInsets? padding,
+    double? indicatorHeight,
+    double? indicatorWidth,
     TltPaginationType? paginationType,
-    this.selectedBgColor,
-    this.unSelectedBgColor,
-    TextStyle? activeLabelStyle,
-    TextStyle? inActiveLabelStyle,
+    this.selectedColor,
+    this.unSelectedColor,
+    TextStyle? activePageNumberStyle,
+    TextStyle? inActivePageNumberStyle,
     Key? key,
+    EdgeInsets? indicatorPadding,
+    TltPageSkipType? pageSkipType,
   })  : assert(!(totalPages < 1), "total pages must be at least 1"),
         assert(
             !(paginationType == TltPaginationType.cardButton &&
@@ -47,8 +62,6 @@ class TltPagination extends StatefulWidget {
             "cannot apply borderRadius for circular pageIndicator"),
         assert((totalPages >= currentPage),
             "current page must be less than or equal to total pages "),
-        // numberOfVisibleItems =
-        //     numberOfVisibleItems ?? _theme.paginationNumberOfVisibleElements,
         activePageIndicatorDecoration = activePageIndicatorDecoration != null
             ? activePageIndicatorDecoration.copyWith(
                 borderRadius: pageIndicatorShape != BoxShape.circle
@@ -58,9 +71,6 @@ class TltPagination extends StatefulWidget {
                             : _theme.paginationIndicatorBorderRadius)
                     : null,
                 shape: pageIndicatorShape ?? _theme.paginationIndicatorShape,
-                // activePageIndicatorDecoration.borderRadius ??
-                //     _theme.paginationActivePageIndicatorCardButtonDecoration
-                //         .borderRadius,
                 color: paginationType != TltPaginationType.cardButton
                     ? activePageIndicatorDecoration.color ??
                         _theme.paginationActivePageIndicatorMinimalDecoration
@@ -96,10 +106,6 @@ class TltPagination extends StatefulWidget {
                             : _theme.paginationIndicatorBorderRadius)
                     : null,
                 shape: pageIndicatorShape ?? _theme.paginationIndicatorShape,
-                // inactivePageIndicatorDecoration.borderRadius ??
-                //     _theme
-                //         .paginationInactivePageIndicatorCardButtonDecoration
-                //         .borderRadius,
                 color: paginationType != TltPaginationType.cardButton
                     ? inactivePageIndicatorDecoration.color ??
                         _theme.paginationInactivePageIndicatorMinimalDecoration
@@ -130,30 +136,6 @@ class TltPagination extends StatefulWidget {
             pageIndicatorShape ?? _theme.paginationIndicatorShape,
         indicatorBorderRadius =
             indicatorBorderRadius ?? _theme.paginationIndicatorBorderRadius,
-        previousButtonDecoration = previousButtonDecoration != null
-            ? previousButtonDecoration.copyWith(
-                color: previousButtonDecoration.color ??
-                    _theme.paginationPreviousButtonDecoration.color,
-                border: previousButtonDecoration.border ??
-                    _theme.paginationPreviousButtonDecoration.border,
-                borderRadius: previousButtonDecoration.borderRadius ??
-                    _theme.paginationPreviousButtonDecoration.borderRadius,
-              )
-            : paginationType == TltPaginationType.cardButton
-                ? _theme.paginationPreviousButtonDecoration
-                : null,
-        nextButtonDecoration = nextButtonDecoration != null
-            ? nextButtonDecoration.copyWith(
-                color: nextButtonDecoration.color ??
-                    _theme.paginationNextButtonDecoration.color,
-                border: nextButtonDecoration.border ??
-                    _theme.paginationNextButtonDecoration.border,
-                borderRadius: nextButtonDecoration.borderRadius ??
-                    _theme.paginationNextButtonDecoration.borderRadius,
-              )
-            : paginationType == TltPaginationType.cardButton
-                ? _theme.paginationNextButtonDecoration
-                : null,
         navigationButtonDecoration = navigationButtonDecoration != null
             ? navigationButtonDecoration.copyWith(
                 color: navigationButtonDecoration.color ??
@@ -171,16 +153,15 @@ class TltPagination extends StatefulWidget {
                 ? _theme.paginationSize
                 : TltPaginationSize.compact),
         paginationAlignment = paginationAlignment ?? _theme.paginationAlignment,
-        // padding = padding ?? _theme.paginationElementPadding,
         paginationType = paginationType ?? _theme.paginationType,
-        elementHeight = elementHeight ?? _theme.paginationElementHeight,
-        elementWidth = elementWidth ?? _theme.paginationElementWidth,
-        activeLabelStyle = activeLabelStyle != null
-            ? activeLabelStyle.copyWith(
+        indicatorHeight = indicatorHeight ?? _theme.paginationElementHeight,
+        indicatorWidth = indicatorWidth ?? _theme.paginationElementWidth,
+        activePageNumberStyle = activePageNumberStyle != null
+            ? activePageNumberStyle.copyWith(
                 color: paginationType != TltPaginationType.cardButton
-                    ? activeLabelStyle.color ?? TltColors.white
+                    ? activePageNumberStyle.color ?? TltColors.white
                     : null,
-                fontWeight: activeLabelStyle.fontWeight ??
+                fontWeight: activePageNumberStyle.fontWeight ??
                     _theme.paginationActiveLabelStyle.fontWeight,
               )
             : _theme.paginationActiveLabelStyle.copyWith(
@@ -188,33 +169,53 @@ class TltPagination extends StatefulWidget {
                     ? TltColors.white
                     : null,
               ),
-        inActiveLabelStyle =
-            inActiveLabelStyle ?? _theme.paginationInActiveLabelStyle,
+        inActivePageNumberStyle =
+            inActivePageNumberStyle ?? _theme.paginationInActiveLabelStyle,
+        indicatorPadding =
+            indicatorPadding ?? const EdgeInsets.symmetric(horizontal: 3),
+        pageSkipType = pageSkipType ?? _theme.pageSkipType,
         super(key: key);
 
   final int currentPage;
   final int totalPages;
   final List<VoidCallback> onTap;
-  final int numberOfVisibleItems = 6;
+  final int numberOfVisibleItems = 15;
   final BoxDecoration activePageIndicatorDecoration;
   final BoxDecoration inactivePageIndicatorDecoration;
   final BoxShape pageIndicatorShape;
-  final BoxDecoration? previousButtonDecoration;
-  final BoxDecoration? nextButtonDecoration;
   final BoxDecoration? navigationButtonDecoration;
-  final BorderRadiusGeometry indicatorBorderRadius;
-  final Widget? previousButtonChild;
-  final Widget? nextButtonChild;
+  final BorderRadius indicatorBorderRadius;
+  final Widget? previousButtonWidget;
+  final Widget? nextButtonWidget;
+
+  /// This variable determines whether the previous and next buttons should be positioned at the end of the screen or not.
+  /// /// [TltPaginationSize] has enums [TltPaginationSize.compact] & [TltPaginationSize.expanded]
   final TltPaginationSize paginationSize;
   final Alignment paginationAlignment;
-  // final EdgeInsets padding;
-  final double elementWidth;
-  final double elementHeight;
+
+  /// This variable sets the width of the navigation buttons.
+  final double indicatorWidth;
+
+  /// This variable sets the height of the navigation buttons.
+  final double indicatorHeight;
+
+  /// Pagination type represents whether the pagination should be displayed as a card or minimal.
+  /// [TltPaginationType] has enums [TltPaginationType.minimal] & [TltPaginationType.cardButton]
   final TltPaginationType paginationType;
-  final Color? selectedBgColor;
-  final Color? unSelectedBgColor;
-  final TextStyle activeLabelStyle;
-  final TextStyle inActiveLabelStyle;
+  final Color? selectedColor;
+  final Color? unSelectedColor;
+
+  /// TextStyle for the active page text
+  final TextStyle activePageNumberStyle;
+
+  /// TextStyle for the in active page text
+  final TextStyle inActivePageNumberStyle;
+  final EdgeInsets indicatorPadding;
+
+  /// Page skip type represents whether to display ellipses or arrows.
+  /// [TltPageSkipType] has enums [TltPageSkipType.none] and [TltPageSkipType.arrow],
+  /// which are used to navigate to the next and previous 5 pages.
+  final TltPageSkipType pageSkipType;
 
   @override
   State<TltPagination> createState() => _TltPaginationState();
@@ -223,37 +224,41 @@ class TltPagination extends StatefulWidget {
 class _TltPaginationState extends State<TltPagination> {
   late int activeIndex;
 
-  int _index1 = 2;
-  late int _index2;
+  late int _startIndex;
+  late int _endIndex;
 
-  /// commented by Tlt037 because it is not used any where in the page
-  // late List _initialList;
   late List _displayList;
 
   @override
   void initState() {
-    _index2 = widget.totalPages > widget.numberOfVisibleItems
-        ? _index1 + 4
-        : widget.totalPages;
-    _displayList = getDisplayList(_index1, _index2);
+    /// Condition to load the display list when the current page is between 1 and 5.
+    /// Condition to load the display list without the last ellipses.
+    /// When the current index is between total page and total page - 5.
+    /// Condition to load the display list when none of the above conditions are met.
+    _startIndex = widget.currentPage <= 5
+        ? 2
+        : widget.currentPage >= widget.totalPages - 4
+            ? widget.totalPages - 5
+            : widget.currentPage - 2;
+
+    /// Condition to load the display list when the current page is between 1 and 5.
+    /// Condition to load the display list without the last ellipses.
+    /// When the current index is between total page and total page - 5.
+    /// Condition to load the display list when none of the above conditions are met.
+    _endIndex = widget.currentPage <= 5
+        ? 7
+        : widget.currentPage >= widget.totalPages - 4
+            ? widget.totalPages
+            : widget.currentPage + 3;
+
+    _displayList = getDisplayList(_startIndex, _endIndex);
     setState(() {
       activeIndex = widget.currentPage;
-      // widget.activePageIndicatorDecoration.copyWith(
-      //   borderRadius: widget.pageIndicatorShape == BoxShape.circle
-      //       ? null
-      //       : widget.activePageIndicatorDecoration.borderRadius,
-      //   shape: widget.pageIndicatorShape,
-      // );
-      // widget.inactivePageIndicatorDecoration.copyWith(
-      //   borderRadius: widget.pageIndicatorShape == BoxShape.circle
-      //       ? null
-      //       : widget.inactivePageIndicatorDecoration.borderRadius,
-      //   shape: widget.pageIndicatorShape,
-      // );
     });
     super.initState();
   }
 
+  /// Builds the list to display on the frontend.
   List getDisplayList(
     int index1,
     int index2,
@@ -263,22 +268,62 @@ class _TltPaginationState extends State<TltPagination> {
       list += [i];
     }
 
-    /// commented by Tlt037 because it is not used any where in the page
-    // _initialList = list;
-    // _displayList =
-    //     [list[0]] + if(index1) + list.sublist(index1, index2) + [list[list.length - 1]];
     return [list[0]] +
-        list.sublist(index1 - 1, index2 - 1) +
+        list.sublist(
+          index1 - 1,
+          index2 - 1,
+        ) +
         [list[list.length - 1]];
+  }
+
+  /// Common function for calculating the next 5 pages and the next page forward position.
+  /// Calculates the forward position.
+  void nextPageFunction(int activeIndex) {
+    if (activeIndex >= widget.totalPages - 5) {
+      /// Calculates pagination for the last 5 pages.
+      _startIndex = widget.totalPages - 5;
+      _endIndex = widget.totalPages;
+    } else if (activeIndex > 5) {
+      /// Calculates pagination for pages after the 5th page.
+      _startIndex = activeIndex - 2;
+      _endIndex = activeIndex + 3;
+    } else if (activeIndex <= 5) {
+      /// Calculates pagination for pages between 1 and 5.
+      _startIndex = 2;
+      _endIndex = 7;
+    } else {
+      /// Calculates pagination for pages before the ellipsis when moving forward.
+      _startIndex = activeIndex - 2;
+      _endIndex = activeIndex + 3;
+    }
+    _displayList = getDisplayList(_startIndex, _endIndex);
+  }
+
+  /// Common function for calculating the pervious 5 pages and the pervious page backward position.
+  /// Calculates pagination for backward pages.
+  void perviousPageFunction(int activeIndex) {
+    if (activeIndex >= widget.totalPages - 4) {
+      /// Calculates pagination for the last 5 pages.
+      _startIndex = widget.totalPages - 5;
+      _endIndex = widget.totalPages;
+    } else if (activeIndex > 5) {
+      /// Calculates pagination for pages preceding the 5th page when moving backward.
+      _startIndex = activeIndex - 2;
+      _endIndex = activeIndex + 3;
+    } else if (activeIndex <= 5) {
+      /// Calculates pagination for pages between 1 and 5.
+      _startIndex = 2;
+      _endIndex = 7;
+    } else {
+      /// Calculates pagination for pages after the ellipsis when moving backward.
+      _startIndex = activeIndex - 2;
+      _endIndex = activeIndex + 3;
+    }
+    _displayList = getDisplayList(_startIndex, _endIndex);
   }
 
   @override
   Widget build(BuildContext context) {
-    // print(_displayList);
-    // print(widget.pageIndicatorShape);
-    // print(widget.indicatorBorderRadius);
-    // print(widget.activePageIndicatorDecoration.borderRadius);
-    // print(widget.inactivePageIndicatorDecoration.borderRadius);
     return Row(
       mainAxisSize: widget.paginationSize == TltPaginationSize.compact
           ? MainAxisSize.min
@@ -288,25 +333,12 @@ class _TltPaginationState extends State<TltPagination> {
           : MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // borderRadius: widget.paginationSize == TltPaginationSize.compact
-        //     ? widget.activePageIndicatorDecoration.borderRadius : BorderRadius.only(),,
         _NavButton(
           enabled: activeIndex != 1,
           onTap: () {
             setState(() {
-              activeIndex = activeIndex - 1;
-              // print(activeIndex);
-              // print(
-              //     _displayList.length == _displayList.indexOf(activeIndex) - 1);
-              // print(_displayList.indexOf(activeIndex));
-              if ((_displayList.indexOf(activeIndex) == 1) &&
-                  (activeIndex > 2)) {
-                _index1 = activeIndex - 1;
-                _index2 = _index1 + 4;
-                // print(_index1);
-                // print(_index2);
-                _displayList = getDisplayList(_index1, _index2);
-              }
+              activeIndex--;
+              perviousPageFunction(activeIndex);
             });
           },
           widget: widget,
@@ -316,54 +348,66 @@ class _TltPaginationState extends State<TltPagination> {
         Row(
           children: [
             for (int i in _displayList)
-              // if (!((i == _index1 - 1 || i == _index2) &&
-              //         _index2 == widget.totalPages - 1) ||
-              //     i == _index1 - 1)
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (i == _displayList[_displayList.length - 1])
                     if (!(i == _displayList[_displayList.length - 1] &&
                         i == _displayList[_displayList.length - 2] + 1))
-                      Container(
-                        height: widget.elementHeight,
-                        width: widget.elementWidth,
-                        decoration: BoxDecoration(
-                          color: widget.unSelectedBgColor ??
-                              widget.inactivePageIndicatorDecoration.color,
-                        ),
-                        //     widget.inactivePageIndicatorDecoration.copyWith(
-                        //   color: widget.unSelectedBgColor ??
-                        //       widget.inactivePageIndicatorDecoration.color,
-                        // ),
-                        child: Center(
-                          child:
-                              // _previousDotOnHover
-                              //     ? Tooltip(
-                              //         richMessage:
-                              //             const TextSpan(text: 'Next 5 pages'),
-                              //         child: Icon(
-                              //           TltIcons.chevrons_right,
-                              //           color: widget.inActiveLabelStyle.color,
-                              //         ),
-                              //       )
-                              //     :
-                              Text(
-                            "...",
-                            style: widget.inActiveLabelStyle,
-                          ),
-                        ),
-                      ),
+                      widget.pageSkipType == TltPageSkipType.none
+                          ? Container(
+                              width: widget.indicatorWidth,
+                              height: widget.indicatorHeight,
+                              padding: widget.indicatorPadding,
+                              child: Center(
+                                child: Text(
+                                  "...",
+                                  style: widget.inActivePageNumberStyle,
+                                ),
+                              ),
+                            )
+                          : InkWell(
+                              borderRadius: widget.indicatorBorderRadius,
+                              onTap: () {
+                                setState(() {
+                                  activeIndex += 5;
+                                  nextPageFunction(activeIndex);
+                                });
+                              },
+                              child: Container(
+                                height: widget.indicatorHeight,
+                                width: widget.indicatorWidth,
+                                decoration: BoxDecoration(
+                                  color: widget.unSelectedColor ??
+                                      widget.inactivePageIndicatorDecoration
+                                          .color,
+                                ),
+                                child: Tooltip(
+                                  message: 'Next 5 pages',
+                                  child: Center(
+                                    child: Icon(
+                                      TltIcons.chevrons_right,
+                                      color:
+                                          widget.inActivePageNumberStyle.color,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                   Container(
-                    height: widget.elementHeight,
-                    width: widget.elementWidth,
+                    margin:
+                        widget.paginationType == TltPaginationType.cardButton
+                            ? null
+                            : widget.indicatorPadding,
+                    height: widget.indicatorHeight,
+                    width: widget.indicatorWidth,
                     decoration: i == activeIndex - 1
                         ? widget.activePageIndicatorDecoration.copyWith(
-                            color: widget.selectedBgColor ??
+                            color: widget.selectedColor ??
                                 widget.activePageIndicatorDecoration.color,
                           )
                         : widget.inactivePageIndicatorDecoration.copyWith(
-                            color: widget.unSelectedBgColor ??
+                            color: widget.unSelectedColor ??
                                 widget.inactivePageIndicatorDecoration.color,
                           ),
                     child: Material(
@@ -375,56 +419,57 @@ class _TltPaginationState extends State<TltPagination> {
                             ? widget.activePageIndicatorDecoration.color
                             : Color.alphaBlend(TltColors.white.withOpacity(0.7),
                                 widget.activePageIndicatorDecoration.color!),
-                        onTap:
-                            // (i == _index1 - 1 || i == _index2)
-                            //     ? null
-                            //     :
-                            () {
-                          // print(i - 1);
+                        onTap: () {
                           widget.onTap[i]();
-                          // print(((i == _displayList[0] &&
-                          //         i == _initialList[1] + 1) ||
-                          //     ((i == _displayList[1]) &&
-                          //         i ==
-                          //             _initialList[widget.totalPages - 1] -
-                          //                 1)));
 
-                          // print(_index1);
-                          // print((i == _displayList[_displayList.length - 1] &&
-                          //     i == _initialList[widget.totalPages - 2] + 1));
                           setState(() {
-                            if (i == _index1 + 2) {
-                              if (i == widget.totalPages - 4) {
-                                _index1 = i;
-                                _index2 += 2;
-                              } else if (_index2 < widget.totalPages - 3) {
-                                _index1 = i;
-                                _index2 += 2;
-                              }
-                              // _index2 = _index2 - 3;
-                              // print(_index1);
-                              _displayList = getDisplayList(_index1, _index2);
-                              // print(_displayList);
-                              // print(i == widget.totalPages - 3);
-                            } else if (i == _index1 - 1) {
-                              if (_index1 > 5) {
-                                _index1 -= 2;
-                                _index2 -= 2;
-                                _displayList = getDisplayList(_index1, _index2);
+                            /// Condition is to prevent the on click for the same page multiple time
+                            if (activeIndex - 1 != i) {
+                              /// Determines the direction of the user's click.
+                              /// Returns `true` if the user clicked forward or next page,
+                              /// `false` if the user clicked back or previous page.
+                              if (activeIndex - 1 < i) {
+                                /// Calculates forward pages.
+                                if (i >= widget.totalPages - 5) {
+                                  /// Calculates pagination for the last 5 pages.
+                                  _startIndex = widget.totalPages - 5;
+                                  _endIndex = widget.totalPages;
+                                } else if (i > 5) {
+                                  /// this calculation is to go forward page after 5th page
+                                  _startIndex = i - 1;
+                                  _endIndex = i + 4;
+                                } else if (i <= 4) {
+                                  /// Calculates pagination for pages after the 5th page.
+                                  _startIndex = 2;
+                                  _endIndex = 7;
+                                } else {
+                                  /// Calculates pagination for pages before the ellipsis when moving forward.
+                                  _startIndex = i - 1;
+                                  _endIndex = i + 4;
+                                }
+                                _displayList =
+                                    getDisplayList(_startIndex, _endIndex);
                               } else {
-                                _index1 = 2;
-                                _index2 = 6;
-                                _displayList = getDisplayList(_index1, _index2);
-                              }
-                            } else {
-                              if (i == 0) {
-                                _index1 = 2;
-                                _index2 = 6;
-                                _displayList = getDisplayList(_index1, _index2);
-                              } else if (i == widget.totalPages - 1) {
-                                _index1 = widget.totalPages - 4;
-                                _index2 = widget.totalPages;
-                                _displayList = getDisplayList(_index1, _index2);
+                                /// Calculates pagination for backward pages.
+                                if (i >= widget.totalPages - 5) {
+                                  /// Calculates pagination for the last 5 pages.
+                                  _startIndex = widget.totalPages - 5;
+                                  _endIndex = widget.totalPages;
+                                } else if (i > 5) {
+                                  /// Calculates pagination for pages before the 5th page when moving backward.
+                                  _startIndex = i - 1;
+                                  _endIndex = i + 4;
+                                } else if (i <= 4) {
+                                  /// Calculates pagination for pages between 1 and 5.
+                                  _startIndex = 2;
+                                  _endIndex = 7;
+                                } else {
+                                  /// Calculates pagination for pages after the ellipsis when moving backward.
+                                  _startIndex = i - 1;
+                                  _endIndex = i + 4;
+                                }
+                                _displayList =
+                                    getDisplayList(_startIndex, _endIndex);
                               }
                             }
                             activeIndex = i + 1;
@@ -438,107 +483,63 @@ class _TltPaginationState extends State<TltPagination> {
                                 ? null
                                 : RoundedRectangleBorder(
                                     borderRadius: widget.indicatorBorderRadius,
-                                    // i == activeIndex - 1
-                                    //     ? widget.activePageIndicatorDecoration
-                                    //         .borderRadius!
-                                    //     : widget.inactivePageIndicatorDecoration
-                                    //         .borderRadius!,
                                   ),
-                        // widget.paginationType ==
-                        //         TltPaginationType.cardButton
-                        //     ? null
-                        //     :
-                        // i == activeIndex - 1
-                        //     ? widget.activePageIndicatorDecoration
-                        //                 .borderRadius !=
-                        //             null
-                        //         ? RoundedRectangleBorder(
-                        //             borderRadius: widget
-                        //                 .activePageIndicatorDecoration
-                        //                 .borderRadius!)
-                        //         : const CircleBorder()
-                        //     : widget.inactivePageIndicatorDecoration
-                        //                 .borderRadius !=
-                        //             null
-                        //         ? RoundedRectangleBorder(
-                        //             borderRadius: widget
-                        //                 .inactivePageIndicatorDecoration
-                        //                 .borderRadius!)
-                        //         : const CircleBorder(),
                         child: Center(
                           child: Text(
-                            // (i > 3) || (i < widget.totalPages - 4)
-                            // ((i == _index1 - 1 || i == _index2) &&
-                            //         ((i != 1 && i != widget.totalPages - 1) ||
-                            //             (_displayList.firstWhere((i) {
-                            //                   if (i == widget.totalPages - 1) {
-                            //                     setState(() {
-                            //                       // _displayList
-                            //                       //     .add(widget.totalPages - 1);
-                            //                     });
-                            //                   }
-                            //                   return i == widget.totalPages - 1;
-                            //                 }) ==
-                            //                 _displayList.length - 2)))
-                            //     ? "..."
-                            //     :
                             (i + 1).toString(),
                             style: i == activeIndex - 1
-                                ? widget.activeLabelStyle
-                                : widget.inActiveLabelStyle,
+                                ? widget.activePageNumberStyle
+                                : widget.inActivePageNumberStyle,
                           ),
                         ),
                       ),
                     ),
                   ),
-                  // print(!((i == _initialList[widget.totalPages - 2]) &&
-                  //     i == _initialList[widget.totalPages - 3] + 1));
-                  // print(!(i == _displayList[0] &&
-                  //     i == _initialList[1] - 1));
                   if (i == _displayList[0])
                     if (!(i == _displayList[0] && i == _displayList[1] - 1))
-                      Container(
-                        height: widget.elementHeight,
-                        width: widget.elementWidth,
-                        decoration: BoxDecoration(
-                          color: widget.unSelectedBgColor ??
-                              widget.inactivePageIndicatorDecoration.color,
-                        ),
-                        //     widget.inactivePageIndicatorDecoration.copyWith(
-                        //   color: widget.unSelectedBgColor ??
-                        //       widget.inactivePageIndicatorDecoration.color,
-                        // ),
-                        child: Center(
-                          child:
-                              //  _nextDotOnHover
-                              //     ? Tooltip(
-                              //         richMessage: const TextSpan(
-                              //             text: 'Previous 5 pages'),
-                              //         child: Icon(
-                              //           TltIcons.chevrons_left,
-                              //           color: widget.inActiveLabelStyle.color,
-                              //         ),
-                              //       )
-                              //     :
-                              Text(
-                            "...",
-                            style: widget.inActiveLabelStyle,
-                          ),
-                        ),
-                      ),
+                      widget.pageSkipType == TltPageSkipType.none
+                          ? Container(
+                              width: widget.indicatorWidth,
+                              height: widget.indicatorHeight,
+                              padding: widget.indicatorPadding,
+                              child: Center(
+                                child: Text(
+                                  "...",
+                                  style: widget.inActivePageNumberStyle,
+                                ),
+                              ),
+                            )
+                          : InkWell(
+                              borderRadius: widget.indicatorBorderRadius,
+                              onTap: () {
+                                setState(() {
+                                  activeIndex -= 5;
+                                  perviousPageFunction(activeIndex);
+                                });
+                              },
+                              child: Container(
+                                height: widget.indicatorHeight,
+                                width: widget.indicatorWidth,
+                                decoration: BoxDecoration(
+                                  color: widget.unSelectedColor ??
+                                      widget.inactivePageIndicatorDecoration
+                                          .color,
+                                ),
+                                child: Tooltip(
+                                  richMessage:
+                                      const TextSpan(text: 'Previous 5 pages'),
+                                  child: Center(
+                                    child: Icon(
+                                      TltIcons.chevrons_left,
+                                      color:
+                                          widget.inActivePageNumberStyle.color,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                 ],
               )
-            // if (widget.paginationType == TltPaginationType.cardButton
-            // //  &&
-            // //     widget.inactivePageIndicatorDecoration.border == null
-            //     )
-            //   Container(
-            //     height: widget.elementHeight,
-            //     width: 1,
-            //     color: widget.activePageIndicatorDecoration.border != null
-            //         ? widget.activePageIndicatorDecoration.border!.top.color
-            //         : null,
-            //   )
           ],
         ),
         _NavButton(
@@ -549,39 +550,11 @@ class _TltPaginationState extends State<TltPagination> {
           icon: Icons.arrow_forward,
           onTap: () {
             setState(() {
-              activeIndex = activeIndex + 1;
-              // print(activeIndex);
-              // print(
-              //     _displayList.length == _displayList.indexOf(activeIndex) - 1);
-              // print(_displayList.indexOf(activeIndex));
-              if ((!_displayList.contains(activeIndex))) {
-                if ((activeIndex < widget.totalPages - 3)) {
-                  _index1 = activeIndex;
-                  _index2 = activeIndex + 4;
-                  // print(_index1);
-                  // print(_index2);
-                } else if (activeIndex > 5) {
-                  _index1 = widget.totalPages - 4;
-                  _index2 = _index1 + 4;
-                }
-              }
-              _displayList = getDisplayList(_index1, _index2);
+              activeIndex++;
+              nextPageFunction(activeIndex);
             });
           },
         ),
-        // TltButton(
-        //   enabled: activeIndex != widget.totalPages,
-        //   text: "Next",
-        //   onTap: () {
-        //     setState(() {
-        //       activeIndex = activeIndex + 1;
-        //     });
-        //   },
-        //   suffix: const Icon(
-        //     Icons.arrow_forward,
-        //     color: TltColors.white,
-        //   ),
-        // ),
       ],
     );
   }
@@ -610,63 +583,31 @@ class _NavButton extends StatelessWidget {
     return Opacity(
       opacity: enabled ? 1 : 0.5,
       child: Container(
-        height: widget.elementHeight,
-        width: widget.previousButtonChild != null
+        height: widget.indicatorHeight,
+        width: widget.previousButtonWidget != null
             ? null
-            : widget.nextButtonChild != null
+            : widget.nextButtonWidget != null
                 ? null
                 : 140,
-        // padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 14),
         decoration: widget.paginationType == TltPaginationType.minimal
-            ? (iconFirst
-                ? widget.previousButtonDecoration != null
-                    ? widget.previousButtonDecoration!.copyWith(
-                        borderRadius:
-                            widget.navigationButtonDecoration!.borderRadius)
-                    : widget.navigationButtonDecoration
-                : widget.nextButtonDecoration != null
-                    ? widget.nextButtonDecoration!.copyWith(
-                        borderRadius:
-                            widget.navigationButtonDecoration!.borderRadius)
-                    : widget.navigationButtonDecoration)
-            : iconFirst
-                ? widget.navigationButtonDecoration != null
-                    ? widget.navigationButtonDecoration!.copyWith(
-                        borderRadius:
-                            widget.previousButtonDecoration!.borderRadius)
-                    : widget.previousButtonDecoration
-                : widget.navigationButtonDecoration != null
-                    ? widget.navigationButtonDecoration!.copyWith(
-                        borderRadius: widget.nextButtonDecoration!.borderRadius)
-                    : widget.nextButtonDecoration,
+            ? widget.navigationButtonDecoration
+            : null,
         child: Material(
           color: TltColors.transparent,
           child: InkWell(
             hoverColor: TltColors.black.withOpacity(0.05),
             customBorder: RoundedRectangleBorder(
                 borderRadius: widget.paginationType == TltPaginationType.minimal
-                    ? iconFirst
-                        ? widget.previousButtonDecoration != null
-                            ? widget.previousButtonDecoration!.borderRadius!
-                            : widget.navigationButtonDecoration!.borderRadius!
-                        : widget.nextButtonDecoration != null
-                            ? widget.nextButtonDecoration!.borderRadius!
-                            : widget.navigationButtonDecoration!.borderRadius!
-                    : iconFirst
-                        ? widget.navigationButtonDecoration != null
-                            ? widget.navigationButtonDecoration!.borderRadius!
-                            : widget.previousButtonDecoration!.borderRadius!
-                        : widget.navigationButtonDecoration != null
-                            ? widget.navigationButtonDecoration!.borderRadius!
-                            : widget.nextButtonDecoration!.borderRadius!),
+                    ? widget.navigationButtonDecoration!.borderRadius!
+                    : BorderRadius.zero),
             mouseCursor: enabled ? null : SystemMouseCursors.forbidden,
             onTap: enabled ? onTap : null,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 14),
               child: Center(
                 child: iconFirst
-                    ? widget.previousButtonChild ?? defaultNavButtonChild()
-                    : widget.nextButtonChild ?? defaultNavButtonChild(),
+                    ? widget.previousButtonWidget ?? defaultNavButton()
+                    : widget.nextButtonWidget ?? defaultNavButton(),
               ),
             ),
           ),
@@ -675,12 +616,7 @@ class _NavButton extends StatelessWidget {
     );
   }
 
-  Row defaultNavButtonChild() {
-    // print("nextButtonDecoration" + widget.nextButtonDecoration.toString());
-    // print("previousButtonDecoration" +
-    //     widget.previousButtonDecoration.toString());
-    // print("navigationButtonDecoration" +
-    //     widget.navigationButtonDecoration.toString());
+  Row defaultNavButton() {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -697,15 +633,15 @@ class _NavButton extends StatelessWidget {
   Text textElement() {
     return Text(
       text,
-      style: widget.inActiveLabelStyle,
+      style: widget.inActivePageNumberStyle,
     );
   }
 
   Icon iconElement() {
     return Icon(
       icon,
-      size: widget.activeLabelStyle.fontSize,
-      color: widget.inActiveLabelStyle.color,
+      size: widget.activePageNumberStyle.fontSize,
+      color: widget.inActivePageNumberStyle.color,
     );
   }
 }

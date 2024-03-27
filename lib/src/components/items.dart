@@ -3,7 +3,9 @@ import 'package:tlt_design/src/foundations/colors.dart';
 import 'package:tlt_design/src/foundations/text_styles.dart';
 import 'package:tlt_design/src/utils/icons.dart';
 
+/// A collection of commonly used UI elements for TLT design system.
 class TltItems {
+  /// Creates a dot widget.
   static Container dot({
     double dotSize = 5.5,
     Color? dotColor,
@@ -18,6 +20,7 @@ class TltItems {
     );
   }
 
+  /// Creates an icon widget.
   static Icon icon({
     double? iconSize,
     IconData iconData = TltIcons.user,
@@ -30,6 +33,7 @@ class TltItems {
     );
   }
 
+  /// Creates an avatar widget.
   static Container avatar({
     double radius = 18.0,
     ImageProvider? imageData,
@@ -57,11 +61,13 @@ class TltItems {
     );
   }
 
-  static Text text(
-      {required String text,
-      double? fontSize,
-      FontWeight? fontWeight,
-      Color? color}) {
+  /// Creates a text widget.
+  static Text text({
+    required String text,
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+  }) {
     return Text(
       text,
       style: TextStyle(
@@ -72,6 +78,7 @@ class TltItems {
     );
   }
 
+  /// Creates a menu item widget with optional prefix, text, hint text, and suffix.
   static Widget menuItem({
     Widget? prefix,
     String? text,
@@ -102,11 +109,11 @@ class TltItems {
               ),
             ),
           ),
-          // if (suffix != null) const Spacer(),
           if (suffix != null) suffix,
         ],
       );
 
+  /// Creates a notification text widget with specified text, background color, font color, radius, and font size.
   static Widget notificationText({
     String text = "0",
     Color bgColor = TltColors.error,
