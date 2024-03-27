@@ -1,5 +1,5 @@
 <div align='center'>
-   <img src='assets/images/tandemloop_logo.svg' height='40px'></img>
+   <img src='assets/images/tandemloop_logo.png' height='50px'></img>
    <h1>Tlt Design Flutter Package</h1>
    <p>
       Tlt Design is a comprehensive Flutter package that brings the <a href="https://tltdesign.tandemloop.net/" target="_blank">Tandemloop Design System</a> to your Flutter applications. <b>Tltdesign</b> includes typography, icons, colors, and over 15 custom widgets to enhance your app development experience.

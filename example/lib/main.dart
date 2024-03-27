@@ -1,4 +1,3 @@
-import 'package:example/testing.dart';
 import 'package:flutter/material.dart';
 import 'package:tlt_design/tlt_design.dart';
 
@@ -3925,29 +3924,7 @@ class TandemloopDesignSystem extends StatelessWidget {
               height: 1,
               color: TltColors.black,
             ),
-            // const TltYSpace(19.5),
-            // Text(
-            //   'Calendar',
-            //   style: TltStyles.heading5.copyWith(
-            //     color: TltColors.black,
-            //     fontWeight: FontWeight.w700,
-            //   ),
-            // ),
-            // const TltYSpace(18),
-            // Center(
-            //   child: Card(
-            //     color: TltColors.blue[100],
-            //     child: SizedBox(
-            //       height: 630,
-            //       width: 300,
-            //       child: TltTableCalendar(
-            //         focusedDay: DateTime.now(),
-            //         firstDay: DateTime(2020),
-            //         lastDay: DateTime(2030),
-            //       ),
-            //     ),
-            //   ),
-            // ),
+
             const TltYSpace(30),
           ],
         ),
