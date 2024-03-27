@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const TestingUi(),
+      home: const TandemloopDesignSystem(),
     );
   }
 }
@@ -3925,14 +3925,14 @@ class TandemloopDesignSystem extends StatelessWidget {
               height: 1,
               color: TltColors.black,
             ),
-            const TltYSpace(19.5),
-            Text(
-              'Calendar',
-              style: TltStyles.heading5.copyWith(
-                color: TltColors.black,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            // const TltYSpace(19.5),
+            // Text(
+            //   'Calendar',
+            //   style: TltStyles.heading5.copyWith(
+            //     color: TltColors.black,
+            //     fontWeight: FontWeight.w700,
+            //   ),
+            // ),
             // const TltYSpace(18),
             // Center(
             //   child: Card(
