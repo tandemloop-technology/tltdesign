@@ -428,16 +428,18 @@ class _LinearPainter extends CustomPainter {
   final bool clipLinearGradient;
 
   _LinearPainter({
-    this.linearGradient,
-    this.linearGradientBackgroundColor,
-    this.maskFilter,
+    // this.linearGradient,
+    // this.linearGradientBackgroundColor,
+    // this.maskFilter,
     required this.progress,
     required this.isRTL,
     required this.activeColor,
     required this.inActiveColor,
     required this.barRadius,
     required this.clipLinearGradient,
-  }) {
+  })  : linearGradient = null,
+        linearGradientBackgroundColor = null,
+        maskFilter = null {
     _paintBackground.color = inActiveColor;
 
     _paintLine.color = progress.toString() == "0.0"
@@ -989,13 +991,12 @@ class _CirclePainter extends CustomPainter {
     required this.inActiveColor,
     this.startAngle = 0.0,
     this.circularStrokeCap = CircularStrokeCap.square,
-    this.linearGradient,
     required this.reverse,
     this.arcBackgroundColor,
     this.arcType,
     this.maskFilter,
     required this.rotateLinearGradient,
-  }) {
+  }) : linearGradient = null {
     _paintBackground.color = inActiveColor;
     _paintBackground.style = PaintingStyle.stroke;
     _paintBackground.strokeWidth = backgroundWidth;

@@ -79,7 +79,6 @@ class TltAvatar extends StatelessWidget {
     this.onBackgroundImageError,
     this.onForegroundImageError,
     this.text,
-    // double? indicatorSize,
     this.onTap,
     this.radius = 24,
     this.showIndicator = false,

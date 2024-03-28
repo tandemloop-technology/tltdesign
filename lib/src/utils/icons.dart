@@ -73,8 +73,8 @@ class TltIcons {
   static const IconData cloud_rain = TltIconData(0xe93e);
   static const IconData cloud_snow = TltIconData(0xe93f);
   static const IconData code = TltIconData(0xe940);
-  static const IconData codepen = TltIconData(0xe941);
-  static const IconData codesandbox = TltIconData(0xe942);
+  static const IconData code_pen = TltIconData(0xe941);
+  static const IconData code_sandbox = TltIconData(0xe942);
   static const IconData coffee = TltIconData(0xe943);
   static const IconData columns = TltIconData(0xe944);
   static const IconData command = TltIconData(0xe945);

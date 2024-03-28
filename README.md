@@ -44,7 +44,7 @@ To use Tlt Design in your Flutter project, add the following to your `pubspec.ya
 
 ```yaml
 dependencies:
-  tlt_design: ^1.0.0
+  tlt_design: ^latest
 ```
 
 then run
@@ -57,13 +57,13 @@ $ flutter pub get
 
 ```dart
 import 'package:tlt_design/tlt_design.dart';
+```
 
-...
-child: TltButton(
-        text: 'Click me',
-        onTap: () {},
-    ),
-...
+```dart
+TltButton(
+  text: 'Click me',
+  onTap: () {},
+),
 ```
 
 # Features
@@ -107,7 +107,7 @@ Icon(TltIcons2.user), // Using TltIcons2 from Iconsax
 
 ## Widgets
 
-Tlt Design comes with over 25+ custom widgets. Here's how you might use a button:
+Tlt Design comes with over 15+ custom widgets. Here's how you might use a button:
 
 ```dart
 TltButton(

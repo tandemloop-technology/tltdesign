@@ -1,6 +1,4 @@
 import 'dart:math' as math;
-import 'dart:ui' as ui;
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -13,7 +11,6 @@ import 'package:tlt_design/src/utils/properties.dart';
 
 final TltTheme _theme = TltTheme.instance;
 
-// const double _defaultDenseButtonHeight = 24.0;
 const EdgeInsetsGeometry _defaultAlignedButtonPadding =
     EdgeInsetsDirectional.only(start: 16.0, end: 4.0);
 const EdgeInsets _defaultUnalignedButtonPadding = EdgeInsets.zero;
@@ -1179,7 +1176,7 @@ class _TltDropdownButtonState<T> extends State<TltDropdownButton<T>>
     if (result == null) {
       // If there's no MediaQuery, then use the window aspect to determine
       // orientation.
-      final Size size = ui.window.physicalSize;
+      final Size size = PlatformDispatcher.instance.views.first.physicalSize;
       result = size.width > size.height
           ? Orientation.landscape
           : Orientation.portrait;
