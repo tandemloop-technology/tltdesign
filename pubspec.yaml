@@ -1,7 +1,14 @@
 name: tlt_design
 description: "A Flutter package for Tandemloop Design System, providing a collection of open-source UI components."
-version: 1.0.0
-homepage: "https://tandemloop.in/"
+version: 1.0.2
+homepage: https://tandemloop.in/
+repository: https://github.com/tandemloop-technology/tltdesign
+issue_tracker: https://github.com/tandemloop-technology/tltdesign/issues
+
+topics:
+  - ui
+  - widgets
+  - helpers
 
 environment:
   sdk: ">=3.2.0 <4.0.0"
@@ -10,7 +17,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.19.0
+  # intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
