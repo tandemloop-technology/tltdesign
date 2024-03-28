@@ -348,13 +348,15 @@ class _TltBreadCrumbState extends State<TltBreadCrumb> {
                               style: widget.breadCrumbTextStyle.copyWith(
                                 shadows: [
                                   Shadow(
-                                      color: isLastElement(
-                                              children.indexOf(i), children)
-                                          ? widget.activeColor
-                                          : i.presentColor ??
-                                              widget.defaultColor,
-                                      offset:
-                                          Offset(0, setUnderLine(i) ? -3 : -1))
+                                    color: isLastElement(
+                                            children.indexOf(i), children)
+                                        ? widget.activeColor
+                                        : i.presentColor ?? widget.defaultColor,
+                                    offset: Offset(
+                                      0,
+                                      setUnderLine(i) ? -3 : -1,
+                                    ),
+                                  )
                                 ],
                                 decoration: setUnderLine(i)
                                     ? TextDecoration.underline

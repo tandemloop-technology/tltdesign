@@ -829,7 +829,6 @@ class _TooltipPositionDelegate extends SingleChildLayoutDelegate {
         verticalOffset: verticalOffset,
         horizontalOffset: horizontalOffset,
         preferLeft: preferBelow,
-        // arrowAlignment: arrowAlignment,
       );
     } else {
       return customPositionDependentBox(

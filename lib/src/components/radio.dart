@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tlt_design/tlt_design.dart';
+
+final TltTheme theme = TltTheme.instance;
 
 class TltRadio<T> extends StatefulWidget {
   const TltRadio({
@@ -269,9 +272,8 @@ class _RadioPainter extends ToggleablePainter {
   _RadioPainter({
     required this.outerRadius,
     required this.innerRadius,
-    this.isRadioButtonDisabled = false,
-    this.selected = false,
-  });
+  })  : isRadioButtonDisabled = false,
+        selected = false;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -511,7 +513,7 @@ class TltRadioListTile<T> extends StatelessWidget {
     }
     return MergeSemantics(
       child: ListTileTheme.merge(
-        selectedColor: activeColor ?? Theme.of(context).toggleableActiveColor,
+        selectedColor: activeColor ?? theme.primaryColor,
         child: ListTile(
           textColor: disableButton ? Colors.grey : null,
           leading: leading,
