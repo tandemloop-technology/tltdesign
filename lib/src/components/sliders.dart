@@ -310,7 +310,6 @@ class TltRangeSlider extends StatelessWidget {
   }
 }
 
-
 /// Returns black or white based on the luminance(Brightness) of the color.
 // Color _decideValueIndicatorTextColor(Color c) =>
 //     c.computeLuminance() > 0.4 ? TltColors.black : TltColors.white;
