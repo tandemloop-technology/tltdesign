@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:tlt_design/src/foundations/colors.dart';
 import 'package:tlt_design/src/foundations/theme.dart';
@@ -246,7 +248,7 @@ class _TltPaginationState extends State<TltPagination> {
     /// When the current index is between total page and total page - 5.
     /// Condition to load the display list when none of the above conditions are met.
     _endIndex = widget.currentPage <= 5
-        ? 7
+        ? min(7, widget.totalPages)
         : widget.currentPage >= widget.totalPages - 4
             ? widget.totalPages
             : widget.currentPage + 3;
@@ -279,18 +281,18 @@ class _TltPaginationState extends State<TltPagination> {
   /// Common function for calculating the next 5 pages and the next page forward position.
   /// Calculates the forward position.
   void nextPageFunction(int activeIndex) {
-    if (activeIndex >= widget.totalPages - 5) {
+    if (activeIndex > widget.totalPages - 4) {
       /// Calculates pagination for the last 5 pages.
-      _startIndex = widget.totalPages - 5;
+      _startIndex = max(2, widget.totalPages - 5);
       _endIndex = widget.totalPages;
-    } else if (activeIndex > 5) {
+    } else if (activeIndex >= 5) {
       /// Calculates pagination for pages after the 5th page.
       _startIndex = activeIndex - 2;
       _endIndex = activeIndex + 3;
-    } else if (activeIndex <= 5) {
+    } else if (activeIndex < 5) {
       /// Calculates pagination for pages between 1 and 5.
       _startIndex = 2;
-      _endIndex = 7;
+      _endIndex = min(7, widget.totalPages);
     } else {
       /// Calculates pagination for pages before the ellipsis when moving forward.
       _startIndex = activeIndex - 2;
@@ -302,18 +304,18 @@ class _TltPaginationState extends State<TltPagination> {
   /// Common function for calculating the pervious 5 pages and the pervious page backward position.
   /// Calculates pagination for backward pages.
   void perviousPageFunction(int activeIndex) {
-    if (activeIndex >= widget.totalPages - 4) {
+    if (activeIndex > widget.totalPages - 4) {
       /// Calculates pagination for the last 5 pages.
-      _startIndex = widget.totalPages - 5;
+      _startIndex = max(2, widget.totalPages - 5);
       _endIndex = widget.totalPages;
-    } else if (activeIndex > 5) {
+    } else if (activeIndex >= 5) {
       /// Calculates pagination for pages preceding the 5th page when moving backward.
       _startIndex = activeIndex - 2;
       _endIndex = activeIndex + 3;
-    } else if (activeIndex <= 5) {
+    } else if (activeIndex < 5) {
       /// Calculates pagination for pages between 1 and 5.
       _startIndex = 2;
-      _endIndex = 7;
+      _endIndex = min(7, widget.totalPages);
     } else {
       /// Calculates pagination for pages after the ellipsis when moving backward.
       _startIndex = activeIndex - 2;
@@ -352,7 +354,8 @@ class _TltPaginationState extends State<TltPagination> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (i == _displayList[_displayList.length - 1])
-                    if (!(i == _displayList[_displayList.length - 1] &&
+                    if (!(
+                        // i == _displayList[_displayList.length - 1] &&
                         i == _displayList[_displayList.length - 2] + 1))
                       widget.pageSkipType == TltPageSkipType.none
                           ? Container(
@@ -430,18 +433,18 @@ class _TltPaginationState extends State<TltPagination> {
                               /// `false` if the user clicked back or previous page.
                               if (activeIndex - 1 < i) {
                                 /// Calculates forward pages.
-                                if (i >= widget.totalPages - 5) {
+                                if (i >= widget.totalPages - 4) {
                                   /// Calculates pagination for the last 5 pages.
-                                  _startIndex = widget.totalPages - 5;
+                                  _startIndex = max(2, widget.totalPages - 5);
                                   _endIndex = widget.totalPages;
                                 } else if (i > 5) {
                                   /// this calculation is to go forward page after 5th page
                                   _startIndex = i - 1;
                                   _endIndex = i + 4;
-                                } else if (i <= 4) {
+                                } else if (i < 4) {
                                   /// Calculates pagination for pages after the 5th page.
                                   _startIndex = 2;
-                                  _endIndex = 7;
+                                  _endIndex = min(7, widget.totalPages);
                                 } else {
                                   /// Calculates pagination for pages before the ellipsis when moving forward.
                                   _startIndex = i - 1;
@@ -451,18 +454,18 @@ class _TltPaginationState extends State<TltPagination> {
                                     getDisplayList(_startIndex, _endIndex);
                               } else {
                                 /// Calculates pagination for backward pages.
-                                if (i >= widget.totalPages - 5) {
+                                if (i >= widget.totalPages - 4) {
                                   /// Calculates pagination for the last 5 pages.
-                                  _startIndex = widget.totalPages - 5;
+                                  _startIndex = max(2, widget.totalPages - 5);
                                   _endIndex = widget.totalPages;
                                 } else if (i > 5) {
                                   /// Calculates pagination for pages before the 5th page when moving backward.
                                   _startIndex = i - 1;
                                   _endIndex = i + 4;
-                                } else if (i <= 4) {
+                                } else if (i < 4) {
                                   /// Calculates pagination for pages between 1 and 5.
                                   _startIndex = 2;
-                                  _endIndex = 7;
+                                  _endIndex = min(7, widget.totalPages);
                                 } else {
                                   /// Calculates pagination for pages after the ellipsis when moving backward.
                                   _startIndex = i - 1;
