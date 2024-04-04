@@ -342,6 +342,7 @@ class _TltPaginationState extends State<TltPagination> {
               activeIndex--;
               perviousPageFunction(activeIndex);
             });
+            widget.onTap[activeIndex - 1]();
           },
           widget: widget,
           icon: Icons.arrow_back,
@@ -552,6 +553,7 @@ class _TltPaginationState extends State<TltPagination> {
           text: "Next",
           icon: Icons.arrow_forward,
           onTap: () {
+            widget.onTap[activeIndex]();
             setState(() {
               activeIndex++;
               nextPageFunction(activeIndex);
