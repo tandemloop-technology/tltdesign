@@ -17,3 +17,7 @@
 ## 1.0.4
 
 - Fixed `TltPagination` less pages issues.
+
+## 1.0.5
+
+- Fixed `TltPagination` onTap for next and previous button added.
