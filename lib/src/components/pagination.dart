@@ -606,7 +606,7 @@ class _NavButton extends StatelessWidget {
             mouseCursor: enabled ? null : SystemMouseCursors.forbidden,
             onTap: enabled ? onTap : null,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 14),
+              padding: const EdgeInsets.all(7),
               child: Center(
                 child: iconFirst
                     ? widget.previousButtonWidget ?? defaultNavButton()
