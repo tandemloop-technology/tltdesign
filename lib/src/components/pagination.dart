@@ -270,12 +270,14 @@ class _TltPaginationState extends State<TltPagination> {
       list += [i];
     }
 
-    return [list[0]] +
-        list.sublist(
-          index1 - 1,
-          index2 - 1,
-        ) +
-        [list[list.length - 1]];
+    return widget.totalPages.bitLength > 1
+        ? [list[0]] +
+            list.sublist(
+              index1 - 1,
+              index2 - 1,
+            ) +
+            [list[list.length - 1]]
+        : [list[0]];
   }
 
   /// Common function for calculating the next 5 pages and the next page forward position.
@@ -354,50 +356,51 @@ class _TltPaginationState extends State<TltPagination> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (i == _displayList[_displayList.length - 1])
-                    if (!(
-                        // i == _displayList[_displayList.length - 1] &&
-                        i == _displayList[_displayList.length - 2] + 1))
-                      widget.pageSkipType == TltPageSkipType.none
-                          ? Container(
-                              width: widget.indicatorWidth,
-                              height: widget.indicatorHeight,
-                              padding: widget.indicatorPadding,
-                              child: Center(
-                                child: Text(
-                                  "...",
-                                  style: widget.inActivePageNumberStyle,
-                                ),
-                              ),
-                            )
-                          : InkWell(
-                              borderRadius: widget.indicatorBorderRadius,
-                              onTap: () {
-                                setState(() {
-                                  activeIndex += 5;
-                                  nextPageFunction(activeIndex);
-                                });
-                              },
-                              child: Container(
-                                height: widget.indicatorHeight,
+                  if (_displayList.length > 1)
+                    if (i == _displayList[_displayList.length - 1])
+                      if (!(
+                          // i == _displayList[_displayList.length - 1] &&
+                          i == _displayList[_displayList.length - 2] + 1))
+                        widget.pageSkipType == TltPageSkipType.none
+                            ? Container(
                                 width: widget.indicatorWidth,
-                                decoration: BoxDecoration(
-                                  color: widget.unSelectedColor ??
-                                      widget.inactivePageIndicatorDecoration
-                                          .color,
+                                height: widget.indicatorHeight,
+                                padding: widget.indicatorPadding,
+                                child: Center(
+                                  child: Text(
+                                    "...",
+                                    style: widget.inActivePageNumberStyle,
+                                  ),
                                 ),
-                                child: Tooltip(
-                                  message: 'Next 5 pages',
-                                  child: Center(
-                                    child: Icon(
-                                      TltIcons.chevrons_right,
-                                      color:
-                                          widget.inActivePageNumberStyle.color,
+                              )
+                            : InkWell(
+                                borderRadius: widget.indicatorBorderRadius,
+                                onTap: () {
+                                  setState(() {
+                                    activeIndex += 5;
+                                    nextPageFunction(activeIndex);
+                                  });
+                                },
+                                child: Container(
+                                  height: widget.indicatorHeight,
+                                  width: widget.indicatorWidth,
+                                  decoration: BoxDecoration(
+                                    color: widget.unSelectedColor ??
+                                        widget.inactivePageIndicatorDecoration
+                                            .color,
+                                  ),
+                                  child: Tooltip(
+                                    message: 'Next 5 pages',
+                                    child: Center(
+                                      child: Icon(
+                                        TltIcons.chevrons_right,
+                                        color: widget
+                                            .inActivePageNumberStyle.color,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
                   Container(
                     margin:
                         widget.paginationType == TltPaginationType.cardButton
@@ -499,49 +502,50 @@ class _TltPaginationState extends State<TltPagination> {
                       ),
                     ),
                   ),
-                  if (i == _displayList[0])
-                    if (!(i == _displayList[0] && i == _displayList[1] - 1))
-                      widget.pageSkipType == TltPageSkipType.none
-                          ? Container(
-                              width: widget.indicatorWidth,
-                              height: widget.indicatorHeight,
-                              padding: widget.indicatorPadding,
-                              child: Center(
-                                child: Text(
-                                  "...",
-                                  style: widget.inActivePageNumberStyle,
-                                ),
-                              ),
-                            )
-                          : InkWell(
-                              borderRadius: widget.indicatorBorderRadius,
-                              onTap: () {
-                                setState(() {
-                                  activeIndex -= 5;
-                                  perviousPageFunction(activeIndex);
-                                });
-                              },
-                              child: Container(
-                                height: widget.indicatorHeight,
+                  if (_displayList.length > 1)
+                    if (i == _displayList[0])
+                      if (!(i == _displayList[0] && i == _displayList[1] - 1))
+                        widget.pageSkipType == TltPageSkipType.none
+                            ? Container(
                                 width: widget.indicatorWidth,
-                                decoration: BoxDecoration(
-                                  color: widget.unSelectedColor ??
-                                      widget.inactivePageIndicatorDecoration
-                                          .color,
+                                height: widget.indicatorHeight,
+                                padding: widget.indicatorPadding,
+                                child: Center(
+                                  child: Text(
+                                    "...",
+                                    style: widget.inActivePageNumberStyle,
+                                  ),
                                 ),
-                                child: Tooltip(
-                                  richMessage:
-                                      const TextSpan(text: 'Previous 5 pages'),
-                                  child: Center(
-                                    child: Icon(
-                                      TltIcons.chevrons_left,
-                                      color:
-                                          widget.inActivePageNumberStyle.color,
+                              )
+                            : InkWell(
+                                borderRadius: widget.indicatorBorderRadius,
+                                onTap: () {
+                                  setState(() {
+                                    activeIndex -= 5;
+                                    perviousPageFunction(activeIndex);
+                                  });
+                                },
+                                child: Container(
+                                  height: widget.indicatorHeight,
+                                  width: widget.indicatorWidth,
+                                  decoration: BoxDecoration(
+                                    color: widget.unSelectedColor ??
+                                        widget.inactivePageIndicatorDecoration
+                                            .color,
+                                  ),
+                                  child: Tooltip(
+                                    richMessage: const TextSpan(
+                                        text: 'Previous 5 pages'),
+                                    child: Center(
+                                      child: Icon(
+                                        TltIcons.chevrons_left,
+                                        color: widget
+                                            .inActivePageNumberStyle.color,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
                 ],
               )
           ],
