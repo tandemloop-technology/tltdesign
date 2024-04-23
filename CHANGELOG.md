@@ -21,3 +21,11 @@
 ## 1.0.5
 
 - Fixed `TltPagination` onTap for next and previous button added.
+
+## 1.0.6
+
+- Fixed `TltPagination` next and previous button padding.
+
+## 1.0.7
+
+- Fixed `TltPagination` error when total pages = 1 is passed.
