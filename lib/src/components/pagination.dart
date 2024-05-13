@@ -233,6 +233,20 @@ class _TltPaginationState extends State<TltPagination> {
 
   @override
   void initState() {
+    super.initState();
+    _initialize();
+  }
+
+  @override
+  void didUpdateWidget(TltPagination oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.currentPage != widget.currentPage ||
+        oldWidget.totalPages != widget.totalPages) {
+      _initialize();
+    }
+  }
+
+  void _initialize() {
     /// Condition to load the display list when the current page is between 1 and 5.
     /// Condition to load the display list without the last ellipses.
     /// When the current index is between total page and total page - 5.
@@ -257,7 +271,6 @@ class _TltPaginationState extends State<TltPagination> {
     setState(() {
       activeIndex = widget.currentPage;
     });
-    super.initState();
   }
 
   /// Builds the list to display on the frontend.
