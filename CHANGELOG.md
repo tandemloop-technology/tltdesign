@@ -29,3 +29,7 @@
 ## 1.0.7
 
 - Fixed `TltPagination` error when total pages = 1 is passed.
+
+## 1.0.8
+
+- Fixed `TltPagination` didUpdateWidget lifecycle hook added to listen to the parameter changes (totalPages).
